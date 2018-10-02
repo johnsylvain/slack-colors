@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Consumer } from '../../context';
+import Page from '../../components/page';
 
 export default class Home extends Component {
   constructor(props) {
@@ -7,6 +7,6 @@ export default class Home extends Component {
   }
 
   render() {
-    return <Consumer>{({ state }) => <div>{state.name}</div>}</Consumer>;
+    return <Page title="Home">welcome home</Page>;
   }
 }
