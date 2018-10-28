@@ -17,12 +17,10 @@ export default class Page extends Component {
   render() {
     return (
       <Consumer>
-        {({ state }) => (
+        {state => (
           <Container>
             <Helmet>
-              <title>
-                {this.props.title ? this.props.title + ' | ' : '' + state.name}
-              </title>
+              <title>{state.name}</title>
             </Helmet>
             {this.props.children}
           </Container>

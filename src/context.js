@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
+import { reducer } from './reducer';
 
 export const Context = React.createContext('app');
 export const { Consumer } = Context;
 
 class Provider extends Component {
+  state = {
+    name: 'Dev Themes!',
+    dispatch: action => this.setState(state => reducer(action, state))
+  };
+
   constructor(props) {
     super(props);
-
-    this.state = {
-      name: 'Dev Themes!'
-    };
   }
 
   render() {
-    return (
-      <Context.Provider value={{ state: this.state }}>
-        {this.props.children}
-      </Context.Provider>
-    );
+    const {
+      state,
+      props: { children }
+    } = this;
+    return <Context.Provider value={state}>{children}</Context.Provider>;
   }
 }
 
