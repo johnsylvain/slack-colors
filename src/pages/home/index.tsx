@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import Page from '../../components/page';
 import { Consumer } from '../../context';
 
-export default class Home extends Component {
+export default class Home extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -10,7 +10,7 @@ export default class Home extends Component {
   render() {
     return (
       <Consumer>
-        {state => (
+        {(state: any) => (
           <Page title="Home">
             <button
               onClick={() =>

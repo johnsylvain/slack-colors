@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
 import { Consumer } from '../../context';
@@ -9,7 +9,12 @@ const Container = styled.div`
   font-family: Rubik;
 `;
 
-export default class Page extends Component {
+interface IPropTypes {
+  children: React.ReactNode;
+  title: string;
+}
+
+export default class Page extends React.Component<IPropTypes> {
   constructor(props) {
     super(props);
   }
@@ -17,7 +22,7 @@ export default class Page extends Component {
   render() {
     return (
       <Consumer>
-        {state => (
+        {(state: any) => (
           <Container>
             <Helmet>
               <title>{state.name}</title>

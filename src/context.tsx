@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { reducer } from './reducer';
 
-export const Context = React.createContext('app');
+const Context = React.createContext('app');
 export const { Consumer } = Context;
 
-class Provider extends Component {
-  state = {
+export default class Provider extends React.Component {
+  state: any = {
     name: 'Dev Themes!',
     dispatch: action => this.setState(state => reducer(action, state))
   };
@@ -22,5 +22,3 @@ class Provider extends Component {
     return <Context.Provider value={state}>{children}</Context.Provider>;
   }
 }
-
-export default Provider;
