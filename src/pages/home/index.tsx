@@ -2,16 +2,12 @@ import * as React from 'react';
 import Page from '../../components/page';
 import { Consumer } from '../../context';
 
-export default class Home extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+export class Home extends React.Component {
   render() {
     return (
       <Consumer>
         {(state: any) => (
-          <Page title="Home">
+          <Page>
             <button
               onClick={() =>
                 state.dispatch({

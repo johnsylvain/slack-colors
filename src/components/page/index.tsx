@@ -9,16 +9,12 @@ const Container = styled.div`
   font-family: Rubik;
 `;
 
-interface IPropTypes {
+type PageProps = {
   children: React.ReactNode;
-  title: string;
-}
+  title?: string;
+};
 
-export default class Page extends React.Component<IPropTypes> {
-  constructor(props) {
-    super(props);
-  }
-
+export default class Page extends React.Component<PageProps, {}> {
   render() {
     return (
       <Consumer>

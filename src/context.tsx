@@ -1,18 +1,17 @@
 import * as React from 'react';
 import { reducer } from './reducer';
+import { IAction } from './interfaces';
 
 const Context = React.createContext('app');
+
 export const { Consumer } = Context;
 
-export default class Provider extends React.Component {
+export class Provider extends React.Component {
   state: any = {
     name: 'Dev Themes!',
-    dispatch: action => this.setState(state => reducer(action, state))
+    dispatch: (action: IAction) =>
+      this.setState((state: any) => reducer(action, state))
   };
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     const {
