@@ -1,7 +1,9 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import styled from 'styled-components';
+
 import { Consumer } from '../../context';
+import { Nav } from '../nav';
 
 const Container = styled.div`
   max-width: 768px;
@@ -23,6 +25,7 @@ export default class Page extends React.Component<PageProps, {}> {
             <Helmet>
               <title>{state.name}</title>
             </Helmet>
+            <Nav />
             {this.props.children}
           </Container>
         )}
