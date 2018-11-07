@@ -8,7 +8,7 @@ export const { Consumer } = Context;
 
 export class Provider extends React.Component {
   state: any = {
-    name: 'Dev Themes!',
+    name: 'dev-themes',
     dispatch: (action: IAction) =>
       this.setState((state: any) => reducer(action, state))
   };
