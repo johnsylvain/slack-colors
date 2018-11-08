@@ -11,6 +11,10 @@ const Subtitle = styled.p`
   font-size: 1.25rem;
 `;
 
+const Container = styled.div`
+  margin: 50px 0;
+`;
+
 export class Jumbotron extends React.Component<
   { children: React.ReactNode },
   {}
@@ -23,6 +27,6 @@ export class Jumbotron extends React.Component<
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    return <Container>{this.props.children}</Container>;
   }
 }

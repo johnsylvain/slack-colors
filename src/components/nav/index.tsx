@@ -15,7 +15,7 @@ const List = styled.li`
     }
 
     a {
-      color: #555;
+      color: ${props => props.theme.subtext};
       text-decoration: none;
     }
   }
@@ -29,10 +29,14 @@ const Logo = styled.div`
   height: 2em;
   font-size: 1em;
   border-radius: 50%;
-  border: 3px solid palevioletred;
-  color: palevioletred;
+  border: 3px solid ${props => props.theme.primary};
+  color: ${props => props.theme.primary};
   font-weight: 700;
   margin-right: 15px;
+
+  + span {
+    font-weight: 700;
+  }
 `;
 
 const NavElement = styled.nav`

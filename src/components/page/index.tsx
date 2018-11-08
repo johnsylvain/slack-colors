@@ -4,13 +4,14 @@ import styled from 'styled-components';
 
 import { Consumer } from '../../context';
 import { Nav } from '../nav';
+import { Footer } from '../footer';
 import { ILink } from '../../interfaces';
 
 const Container = styled.div`
   max-width: 768px;
   margin: 0 auto;
-  font-family: Rubik;
-  color: #212121;
+  font-family: Avenir Next, Avenir;
+  color: ${props => props.theme.text};
 `;
 
 type PageProps = {
@@ -34,6 +35,10 @@ export default class Page extends React.Component<PageProps, {}> {
             </Helmet>
             <Nav links={links} />
             {this.props.children}
+            <Footer>
+              <p>Built by John Sylvain</p>
+              <p>&copy; {new Date().getFullYear()}</p>
+            </Footer>
           </Container>
         )}
       </Consumer>
