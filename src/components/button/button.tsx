@@ -10,16 +10,11 @@ interface ButtonProps {
   children?: React.ReactNode;
 }
 
-export const Button: React.SFC<ButtonProps> = ({
-  href,
-  to,
-  onClick,
-  children
-}) => {
-  const Element = href ? 'a' : to ? Link : 'button';
+export const Button: React.SFC<ButtonProps> = ({ children, ...rest }) => {
+  const Element = rest.href ? 'a' : rest.to ? Link : 'button';
 
   return (
-    <Element className={styles.button} onClick={onClick} href={href} to={to}>
+    <Element className={styles.button} {...rest}>
       {children}
     </Element>
   );
