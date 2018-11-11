@@ -1,18 +1,12 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
-import styled from 'styled-components';
 
 import { Consumer } from '../../context';
 import { Nav } from '../nav';
 import { Footer } from '../footer';
 import { ILink } from '../../interfaces';
 
-const Container = styled.div`
-  max-width: 768px;
-  margin: 0 auto;
-  font-family: Avenir Next, Avenir;
-  color: ${props => props.theme.text};
-`;
+import styles from './page.styles';
 
 type PageProps = {
   children: React.ReactNode;
@@ -24,12 +18,12 @@ const links: ILink[] = [
   { to: '/train', text: 'Train' }
 ];
 
-export default class Page extends React.Component<PageProps, {}> {
+export class Page extends React.Component<PageProps, {}> {
   render() {
     return (
       <Consumer>
         {(state: any) => (
-          <Container>
+          <div className={styles.page}>
             <Helmet>
               <title>{state.name}</title>
             </Helmet>
@@ -39,7 +33,7 @@ export default class Page extends React.Component<PageProps, {}> {
               <p>Built by John Sylvain</p>
               <p>&copy; {new Date().getFullYear()}</p>
             </Footer>
-          </Container>
+          </div>
         )}
       </Consumer>
     );

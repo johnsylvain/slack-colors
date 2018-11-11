@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Page from '../../components/page';
+import { Page } from '../../components/page';
 import { Consumer } from '../../context';
 
 import { Button } from '../../components/button';
@@ -18,17 +18,7 @@ export class Home extends React.Component {
               <Jumbotron.Subtitle>
                 Support for VSCode, iTerm2, Terminal, and Atom.
               </Jumbotron.Subtitle>
-              <Button
-                primary
-                onClick={() =>
-                  state.dispatch({
-                    type: 'UPDATE_NAME',
-                    payload: 'new name'
-                  })
-                }
-              >
-                {state.name}
-              </Button>
+              <Button to="/train">Get started</Button>
             </Jumbotron>
           </Page>
         )}
