@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ILink } from '../../interfaces';
 import { Consumer } from '../../context';
 
-const List = styled.li`
+const List = styled.ul`
   list-style: none;
 
   > li {
