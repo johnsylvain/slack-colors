@@ -1,20 +1,24 @@
 import * as React from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-
-const isAuthenticated = () => false;
+import { Consumer } from '../../context';
+import { IContextState } from '../../interfaces';
 
 export const PrivateRoute: React.SFC<RouteProps> = ({
   component: Component,
   ...rest
 }) => (
-  <Route
-    {...rest}
-    render={props => {
-      return isAuthenticated() ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: '/', state: { from: props.location } }} />
-      );
-    }}
-  />
+  <Consumer>
+    {(state: IContextState) => (
+      <Route
+        {...rest}
+        render={props => {
+          return state.trainingData.length > 10 ? (
+            <Component {...props} />
+          ) : (
+            <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+          );
+        }}
+      />
+    )}
+  </Consumer>
 );

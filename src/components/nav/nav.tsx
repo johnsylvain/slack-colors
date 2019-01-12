@@ -9,7 +9,7 @@ export class Nav extends React.Component<
     links: ILink[];
   },
   {}
-  > {
+> {
   constructor(props) {
     super(props);
   }
@@ -20,7 +20,7 @@ export class Nav extends React.Component<
         {(state: any) => (
           <nav className={styles.nav}>
             <div>
-              <div className={styles.logo}>sc</div> <span>{state.name}</span>
+              <div className={styles.logo}>sc</div> <span>Slack Colors</span>
             </div>
             <ul className={styles.list}>
               {this.props.links.map(link => (

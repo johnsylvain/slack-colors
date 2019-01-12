@@ -3,6 +3,8 @@ import { Page } from '../../components/page';
 import { Consumer } from '../../context';
 
 export class Generate extends React.Component {
+  componentDidMount() {}
+
   render() {
     return (
       <Consumer>
