@@ -16,11 +16,18 @@ const colors = {
   border: '#dcdcdc'
 };
 
+const shadows = {
+  sm: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
+  md: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
+  lg: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
+}
+
 const rem = (px: number) => `${Math.round(px / rootFontSize * 100) / 100}rem`;
 
 const theme = {
   colors,
   gutters,
+  shadows,
   fonts: {
     sansSerif:
       '"Avenir Next",Avenir,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif',
@@ -36,8 +43,8 @@ const theme = {
   },
   fontWeights: {
     normal: 400,
-    bold: 500,
-    black: 700
+    bold: 700,
+    black: 900
   }
 };
 

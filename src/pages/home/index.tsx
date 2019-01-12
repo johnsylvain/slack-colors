@@ -13,10 +13,10 @@ export class Home extends React.Component {
           <Page>
             <Jumbotron>
               <Jumbotron.Title>
-                Create personalized code color themes.
+                Personalized Slack themes.
               </Jumbotron.Title>
               <Jumbotron.Subtitle>
-                Support for VSCode, iTerm2, Terminal, and Atom.
+                Leverage the magic of Machine Learning to make Slack your own.
               </Jumbotron.Subtitle>
               <Button to="/train">Get started</Button>
             </Jumbotron>

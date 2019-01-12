@@ -2,13 +2,13 @@ import * as React from 'react';
 import { reducer } from './reducer';
 import { IAction } from './interfaces';
 
-const Context = React.createContext('app');
+const Context = React.createContext({});
 
 export const { Consumer } = Context;
 
 export class Provider extends React.Component {
   state: any = {
-    name: 'dev-themes',
+    name: 'slack-colors',
     dispatch: (action: IAction) =>
       this.setState((state: any) => reducer(action, state))
   };

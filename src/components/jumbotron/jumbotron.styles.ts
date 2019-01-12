@@ -5,7 +5,8 @@ export default {
   title: css({
     fontSize: theme.fontSizes.xl * 1.5,
     fontWeight: theme.fontWeights.bold,
-    marginBottom: theme.gutters.sm
+    marginBottom: theme.gutters.sm,
+    lineHeight: 1.2
   }),
 
   subtitle: css({
