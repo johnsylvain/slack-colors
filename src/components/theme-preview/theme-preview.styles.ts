@@ -17,6 +17,7 @@ export default (palette: string[]) => {
 
   return {
     window: css({
+      backgroundColor: 'white',
       fontFamily: 'Lato',
       display: 'grid',
       borderRadius: '3px',
@@ -39,6 +40,7 @@ export default (palette: string[]) => {
     }),
 
     clientHeader: css({
+      color: '#2c2d30',
       padding: theme.gutters.md,
       borderBottom: `1px solid #e8e8e8`
     }),
@@ -59,7 +61,7 @@ export default (palette: string[]) => {
       display: 'flex',
       color: '#2c2d30',
 
-      'img': {
+      img: {
         width: 40,
         height: 40,
         borderRadius: 4,
@@ -79,7 +81,7 @@ export default (palette: string[]) => {
 
     messageForm: css({
       width: '100%',
-      border: `2px solid ${textColorLighter}`,
+      border: '2px solid rgba(145,145,147,.7)',
       padding: theme.gutters.sm,
       borderRadius: '5px',
       outline: 0,
@@ -97,7 +99,7 @@ export default (palette: string[]) => {
     channelName: css({
       fontWeight: theme.fontWeights.black,
       fontSize: theme.fontSizes.lg,
-      display: 'block',
+      display: 'block'
     }),
 
     teamMenuUser: css({
@@ -131,7 +133,7 @@ export default (palette: string[]) => {
       marginTop: theme.gutters.md,
       cursor: 'default',
 
-      ':hover': {
+      '&:hover': {
         backgroundColor: columnBG
       }
     }),
@@ -154,7 +156,7 @@ export default (palette: string[]) => {
       background: activeItem,
       color: activeItemText,
 
-      ':hover': {
+      '&:hover': {
         backgroundColor: activeItem
       }
     }),
@@ -162,7 +164,7 @@ export default (palette: string[]) => {
     listItemLabel: css({
       opacity: 0.7,
       display: 'inline-block',
-      marginRight: theme.gutters.xs,
+      marginRight: theme.gutters.xs
     }),
 
     mentionBadge: css({
@@ -201,8 +203,8 @@ export default (palette: string[]) => {
 
       '&:before': {
         borderColor: activePresence,
-        backgroundColor: activePresence,
+        backgroundColor: activePresence
       }
     })
-  }
+  };
 };

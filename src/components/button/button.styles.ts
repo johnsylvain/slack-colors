@@ -1,5 +1,5 @@
 import { css } from 'emotion';
-import { theme, rem } from '../../theme';
+import { theme } from '../../theme';
 
 export default {
   button: css({

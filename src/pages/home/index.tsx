@@ -12,11 +12,9 @@ export class Home extends React.Component {
         {(state: any) => (
           <Page>
             <Jumbotron>
-              <Jumbotron.Title>
-                Personalized Slack themes.
-              </Jumbotron.Title>
+              <Jumbotron.Title>Personalized Slack themes. 🎨</Jumbotron.Title>
               <Jumbotron.Subtitle>
-                Leverage the magic of Machine Learning to make Slack your own.
+                Leverage the power of Machine Learning to make Slack your own.
               </Jumbotron.Subtitle>
               <Button to="/train">Get started</Button>
             </Jumbotron>
