@@ -4,7 +4,7 @@ export const rootFontSize = 14;
 const gutters = {
   xs: spacingUnit / 2,
   sm: spacingUnit,
-  md: spacingUnit * 2,
+  md: spacingUnit * 1.5,
   lg: spacingUnit * 4,
   xl: spacingUnit * 7
 };
@@ -30,7 +30,7 @@ const theme = {
   shadows,
   fonts: {
     sansSerif:
-      '"Avenir Next",Avenir,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif',
+      'Lato,"Avenir Next",Avenir,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif',
     monospace:
       '"SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace'
   },
