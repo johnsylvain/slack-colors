@@ -16,5 +16,11 @@ export default {
 
   container: css({
     margin: `${theme.gutters.xl}px 0`
+  }),
+
+  ctaContainer: css({
+    '> *:not(:last-child)': {
+      marginRight: theme.gutters.sm
+    }
   })
 };

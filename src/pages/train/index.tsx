@@ -1,105 +1,14 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { Page } from '../../components/page';
 import { ThemePreviewStack } from '../../components/theme-preview-stack';
+import { ProgressBar } from '../../components/progress-bar';
 import { Consumer, Context } from '../../context';
 import { IContextState } from '../../interfaces';
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { css, keyframes } from 'emotion';
-import { theme } from '../../theme';
-
-const thumbsUp = keyframes`
-  0% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  20% {
-    transform: translateY(6px) rotate(5deg) scale(0.9);
-  }
-
-  40% {
-    transform: translateY(-6px) rotate(-5deg) scale(1.1);
-  }
-
-  80% {
-    transform: translateY(-6px) rotate(-5deg) scale(1.1);
-  }
-`;
-
-const thumbsDown = keyframes`
-  0% {
-    transform: rotateY(180deg) translateY(0px) rotate(0deg);
-  }
-
-  20% {
-    transform: rotateY(180deg) translateY(-6px) rotate(-5deg) scale(0.9);
-  }
-
-  40% {
-    transform: rotateY(180deg) translateY(6px) rotate(5deg) scale(1.1);
-  }
-
-  80% {
-    transform: rotateY(180deg) translateY(6px) rotate(5deg) scale(1.1);
-  }
-`;
-
-const styles = {
-  button: css({
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    width: '70px',
-    height: '70px',
-    fontSize: theme.fontSizes.xl,
-    color: theme.colors.primary,
-    border: 0,
-    outline: 0,
-    borderRadius: '50%',
-
-    svg: {
-      position: 'relative',
-      transformOrigin: 'center'
-    },
-
-    '&:before': {
-      content: "''",
-      backgroundColor: theme.colors.primary,
-      borderRadius: '50%',
-      display: 'block',
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      bottom: 0,
-      left: 0,
-      opacity: 0.2
-    }
-  }),
-
-  buttonYes: css({
-    '&:focus svg': {
-      animation: `${thumbsUp} 0.7s ease-out`
-    }
-  }),
-
-  buttonNo: css({
-    svg: {
-      transform: 'rotateY(180deg)'
-    },
-
-    '&:focus svg': {
-      animation: `${thumbsDown} 0.7s ease-out`
-    }
-  }),
-
-  buttonGroup: css({
-    display: 'flex',
-    justifyContent: 'space-around'
-  })
-};
+import styles from './train.styles';
 
 export class Train extends React.Component {
   static contextType = Context;
@@ -119,6 +28,10 @@ export class Train extends React.Component {
       <Consumer>
         {(state: IContextState) => (
           <Page>
+            <ProgressBar current={state.trainingData.length} max={10}>
+              Training complete! View your results{' '}
+              <Link to="/generate">here</Link>
+            </ProgressBar>
             <ThemePreviewStack palettes={state.palettes} />
             <div className={styles.buttonGroup}>
               <button
