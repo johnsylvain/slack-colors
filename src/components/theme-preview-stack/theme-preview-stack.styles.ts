@@ -1,9 +1,22 @@
-import { css } from 'emotion';
+import { css, keyframes } from 'emotion';
+
+const lift = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px)
+  }
+`;
 
 export default {
   stack: css({
     position: 'relative',
-    minHeight: 500
+    minHeight: 500,
+    animation: `${lift} 0.4s forwards`
   }),
 
   stackItem: css({

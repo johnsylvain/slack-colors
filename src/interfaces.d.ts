@@ -9,6 +9,6 @@ export interface ILink {
 }
 
 export interface IContextState {
-  dispatch: (action: IAction) => IContextState;
+  dispatch: (action: IAction) => void;
   [key: string]: any;
 }

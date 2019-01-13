@@ -40,7 +40,7 @@ export default (palette: string[]) => {
     }),
 
     clientHeader: css({
-      color: '#2c2d30',
+      color: theme.colors.text,
       padding: theme.gutters.md,
       borderBottom: `1px solid #e8e8e8`
     }),
@@ -49,7 +49,8 @@ export default (palette: string[]) => {
       padding: theme.gutters.md,
       flexGrow: 1,
       display: 'flex',
-      alignItems: 'flex-end'
+      justifyContent: 'flex-end',
+      flexDirection: 'column'
     }),
 
     clientFooter: css({
@@ -57,9 +58,41 @@ export default (palette: string[]) => {
       paddingTop: 0
     }),
 
+    dateDivider: css({
+      color: theme.colors.text,
+      fontWeight: theme.fontWeights.bold,
+      fontSize: theme.fontSizes.sm,
+      display: 'flex',
+      justifyContent: 'center',
+      marginBottom: theme.gutters.xs,
+      margin: `0 ${-theme.gutters.md}px ${theme.gutters.md}px`,
+      position: 'relative',
+
+      span: {
+        position: 'relative',
+        zIndex: 10,
+        backgroundColor: 'white',
+        display: 'inline-block',
+        padding: `0 ${theme.gutters.sm}px`
+      },
+
+      '&:before': {
+        content: '""',
+        width: '100%',
+        backgroundColor: '#e8e8e8',
+        height: 1,
+        top: 6,
+        position: 'absolute'
+      }
+    }),
+
     message: css({
       display: 'flex',
-      color: '#2c2d30',
+      color: theme.colors.text,
+
+      '&:not(:last-of-type)': {
+        marginBottom: theme.gutters.sm
+      },
 
       img: {
         width: 40,
@@ -73,6 +106,12 @@ export default (palette: string[]) => {
       display: 'block',
       fontWeight: theme.fontWeights.bold,
       marginBottom: theme.gutters.xs
+    }),
+
+    messageTime: css({
+      fontSize: theme.fontSizes.sm,
+      fontWeight: theme.fontWeights.normal,
+      color: theme.colors.subtext
     }),
 
     messageContent: css({
@@ -134,7 +173,7 @@ export default (palette: string[]) => {
       cursor: 'default',
 
       '&:hover': {
-        backgroundColor: columnBG
+        backgroundColor: 'transparent'
       }
     }),
 

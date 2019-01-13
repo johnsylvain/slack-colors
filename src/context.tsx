@@ -1,17 +1,16 @@
 import * as React from 'react';
 import { createPalette } from './common/helpers';
 import { reducer } from './reducer';
-import { IAction, IContextState } from './interfaces';
 import { saveState, loadState } from './local-storage';
-
-const Context = React.createContext({});
-
-export const { Consumer } = Context;
+import { IAction, IContextState } from './interfaces';
 
 const initialPallets = new Array(4).fill(null).map(createPalette);
 
+export const Context = React.createContext({});
+export const { Consumer } = Context;
+
 export class Provider extends React.Component {
-  state: any = {
+  state: IContextState = {
     palettes: initialPallets,
     trainingData: loadState() || [],
     dispatch: (action: IAction) =>

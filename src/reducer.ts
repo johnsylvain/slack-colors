@@ -14,7 +14,8 @@ export function reducer(action: IAction, state: IContextState): IContextState {
           {
             input: action.payload.palette
               .map(hexToRgb)
-              .reduce((acc: number[], cur: number[]) => [...acc, ...cur], []),
+              .reduce((acc: number[], cur: number[]) => [...acc, ...cur], [])
+              .map((num: number) => Math.abs(Math.round(num / 2.55) / 100)),
             output: action.payload.userRating
           }
         ]

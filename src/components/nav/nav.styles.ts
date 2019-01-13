@@ -2,18 +2,17 @@ import { css } from 'emotion';
 import { theme } from '../../theme';
 
 export default {
-  logo: css({
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '2em',
-    height: '2em',
-    fontSize: '1em',
-    borderRadius: '50%',
-    border: `3px solid ${theme.colors.primary}`,
-    color: theme.colors.primary,
-    fontWeight: theme.fontWeights.black,
-    marginRight: '15px'
+  brand: css({
+    fontWeight: theme.fontWeights.bold,
+
+    '&:before': {
+      content: '""',
+      width: '10px',
+      height: '10px',
+      borderRadius: '50%',
+      marginRight: '10px',
+      backgroundColor: theme.colors.primary
+    }
   }),
 
   nav: css({
@@ -33,6 +32,7 @@ export default {
 
     '> li': {
       display: 'inline-block',
+      fontSize: theme.fontSizes.md,
 
       '&:not(:first-child)': {
         marginLeft: '10px'

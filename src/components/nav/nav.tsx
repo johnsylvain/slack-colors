@@ -19,9 +19,7 @@ export class Nav extends React.Component<
       <Consumer>
         {(state: any) => (
           <nav className={styles.nav}>
-            <div>
-              <div className={styles.logo}>sc</div> <span>Slack Colors</span>
-            </div>
+            <div className={styles.brand}>Slack Colors</div>
             <ul className={styles.list}>
               {this.props.links.map(link => (
                 <li key={link.to}>

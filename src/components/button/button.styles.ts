@@ -4,7 +4,7 @@ import { theme } from '../../theme';
 export default {
   button: css({
     fontSize: theme.fontSizes.md,
-    fontWeight: theme.fontWeights.bold,
+    fontWeight: theme.fontWeights.normal,
     padding: '0.5em 1em',
     display: 'inline-block',
     textDecoration: 'none',

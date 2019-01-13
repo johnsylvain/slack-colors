@@ -25,10 +25,10 @@ export class Page extends React.Component<PageProps, {}> {
         {(state: any) => (
           <div className={styles.page}>
             <Helmet>
-              <title>{state.name}</title>
+              <title>Slack Colors</title>
             </Helmet>
             <Nav links={links} />
-            {this.props.children}
+            <div className={styles.body}>{this.props.children}</div>
             <Footer>
               <p>Built by John Sylvain</p>
               <p>&copy; {new Date().getFullYear()}</p>

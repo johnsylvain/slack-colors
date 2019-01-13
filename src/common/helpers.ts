@@ -30,7 +30,7 @@ export function darken(color: number[]): number[] {
   return color.map(c => c - 10);
 }
 
-export function createPalette(): string[] {
+export function createPalette(useRgb?: boolean): any {
   const c1 = generateColor([40, 255]);
   const c2 = generateColor([1, 255]);
   const white = [255, 255, 255];
@@ -44,5 +44,5 @@ export function createPalette(): string[] {
     generateColor([1, 135]),
     darken(c2)
   ];
-  return palette.map(rgbToHex);
+  return useRgb ? palette : palette.map(rgbToHex);
 }
