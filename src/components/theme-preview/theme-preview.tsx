@@ -6,7 +6,10 @@ import stylesFn from './theme-preview.styles';
 // @ts-ignore
 import avatar from '../../assets/avatar.jpg';
 
-export const ThemePreview: React.SFC<{ palette: string[] }> = ({ palette }) => {
+export const ThemePreview: React.SFC<{
+  palette: string[];
+  showPaletteColors: boolean;
+}> = ({ palette, showPaletteColors }) => {
   const styles = stylesFn(palette);
 
   return (
@@ -60,22 +63,23 @@ export const ThemePreview: React.SFC<{ palette: string[] }> = ({ palette }) => {
           <span className={styles.channelName}>#general</span>
         </div>
         <div className={styles.clientBody}>
+          {showPaletteColors && (
+            <div className={styles.paletteColors}>
+              <span>
+                Copy and paste these values into your Slack{' '}
+                <a
+                  href="https://get.slack.help/hc/en-us/articles/205166337-Customizing-your-Slack-theme"
+                  target="_blank"
+                >
+                  Sidebar
+                </a>{' '}
+                settings.
+              </span>
+              <div>{palette.join(', ')}</div>
+            </div>
+          )}
           <div className={styles.dateDivider}>
             <span>{format(new Date(), 'MMMM Do, YYYY')}</span>
-          </div>
-          <div className={styles.message}>
-            <div>
-              <img src={avatar} alt="" />
-            </div>
-            <div>
-              <span className={styles.messageUser}>
-                Toby Flenderson{' '}
-                <span className={styles.messageTime}>
-                  {format(subMinutes(new Date(), 10), 'h:mm A')}
-                </span>
-              </span>
-              <span className={styles.messageContent}>Rid dit dit di do!</span>
-            </div>
           </div>
           <div className={styles.message}>
             <div>

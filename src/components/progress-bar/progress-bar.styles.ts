@@ -6,7 +6,7 @@ export default {
     borderRadius: 4,
     backgroundColor: theme.colors.border,
     height: 15,
-    marginBottom: theme.gutters.lg,
+    marginBottom: theme.gutters.md,
     transition: 'all 0.4s ease'
   }),
 

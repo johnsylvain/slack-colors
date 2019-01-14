@@ -24,7 +24,7 @@ export class Generate extends React.Component {
           <Page>
             {this.context.generatedThemes.map(palette => (
               <div style={{ marginBottom: theme.gutters.lg }}>
-                <ThemePreview palette={palette.theme} />
+                <ThemePreview showPaletteColors palette={palette.theme} />
               </div>
             ))}
           </Page>

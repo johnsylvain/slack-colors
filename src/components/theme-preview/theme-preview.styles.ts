@@ -58,6 +58,36 @@ export default (palette: string[]) => {
       paddingTop: 0
     }),
 
+    paletteColors: css({
+      color: theme.colors.text,
+      marginBottom: theme.gutters.lg,
+      lineHeight: 1.4,
+
+      span: {
+        fontSize: theme.fontSizes.md,
+        color: theme.colors.subtext,
+        display: 'inline-block',
+        marginBottom: theme.gutters.xs
+      },
+
+      a: {
+        background: '#eaf5fc',
+        color: '#0576b9',
+        textDecoration: 'none',
+        padding: '1px 2px',
+        borderRadius: 2
+      },
+
+      div: {
+        fontFamily: theme.fonts.monospace,
+        background: '#f9f9f9',
+        border: '1px solid rgba(0,0,0,.15)',
+        borderRadius: 4,
+        padding: theme.gutters.sm,
+        fontSize: theme.fontSizes.sm
+      }
+    }),
+
     dateDivider: css({
       color: theme.colors.text,
       fontWeight: theme.fontWeights.bold,
