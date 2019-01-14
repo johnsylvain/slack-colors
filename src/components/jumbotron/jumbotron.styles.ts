@@ -4,7 +4,7 @@ import { theme } from '../../theme';
 export default {
   title: css({
     fontSize: theme.fontSizes.xl * 1.5,
-    fontWeight: theme.fontWeights.bold,
+    fontWeight: theme.fontWeights.black,
     marginBottom: theme.gutters.sm,
     lineHeight: 1.2
   }),

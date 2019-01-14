@@ -50,10 +50,12 @@ export default {
     border: 0,
     outline: 0,
     borderRadius: '50%',
+
     svg: {
       position: 'relative',
       transformOrigin: 'center'
     },
+
     '&:before': {
       content: "''",
       backgroundColor: theme.colors.primary,
@@ -65,13 +67,20 @@ export default {
       bottom: 0,
       left: 0,
       opacity: 0.2
+    },
+
+    '&:disabled': {
+      cursor: 'not-allowed',
+      opacity: 0.3
     }
   }),
+
   buttonYes: css({
     '&:focus svg': {
       animation: `${thumbsUp} 0.7s ease-out`
     }
   }),
+
   buttonNo: css({
     svg: {
       transform: 'rotateY(180deg)'
@@ -80,6 +89,7 @@ export default {
       animation: `${thumbsDown} 0.7s ease-out`
     }
   }),
+
   buttonGroup: css({
     display: 'flex',
     justifyContent: 'space-around'

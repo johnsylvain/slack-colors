@@ -1,34 +1,19 @@
 import * as React from 'react';
-import { NeuralNetwork } from 'brain.js';
+import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Page } from '../../components/page';
+import { ThemePreview } from '../../components/theme-preview';
 import { Consumer, Context } from '../../context';
-import { createPalette } from '../../common/helpers';
-import { css } from 'emotion';
 import { theme } from '../../theme';
-
-const styles = {
-  headline: css({
-    fontWeight: theme.fontWeights.bold,
-    fontSize: theme.fontSizes.lg
-  })
-};
 
 export class Generate extends React.Component {
   static contextType = Context;
 
   componentDidMount() {
-    const net = new NeuralNetwork();
-    net.trainAsync(this.context.trainingData);
-    const predictions = [];
-    const themes = {
-      love: [],
-      like: []
-    };
-
-    for (let i = 0; i < 10; i++) {
-      predictions[i] = createPalette(true)
-        .reduce((acc: number[], cur: number[]) => [...acc, ...cur], [])
-        .map((num: number) => Math.abs(Math.round(num / 2.55) / 100));
+    if (!this.context.generatedThemes.length) {
+      this.context.dispatch({
+        type: 'GENERATE_THEMES'
+      });
     }
   }
 
@@ -37,8 +22,11 @@ export class Generate extends React.Component {
       <Consumer>
         {(state: any) => (
           <Page>
-            <h2 className={styles.headline}>You'll love these.</h2>
-            <h2 className={styles.headline}>Try something different.</h2>
+            {this.context.generatedThemes.map(palette => (
+              <div style={{ marginBottom: theme.gutters.lg }}>
+                <ThemePreview palette={palette.theme} />
+              </div>
+            ))}
           </Page>
         )}
       </Consumer>

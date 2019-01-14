@@ -13,8 +13,7 @@ export class Home extends React.Component {
             <Jumbotron>
               <Jumbotron.Title>Personalized Slack themes. 🎨</Jumbotron.Title>
               <Jumbotron.Subtitle>
-                Leverage the power of Machine Learning to make Slack
-                one-of-a-kind.
+                Leverage the power of AI to make Slack one-of-a-kind.
               </Jumbotron.Subtitle>
               <Jumbotron.CTA>
                 <Button to="/train">Get started</Button>

@@ -12,7 +12,7 @@ export const PrivateRoute: React.SFC<RouteProps> = ({
       <Route
         {...rest}
         render={props => {
-          return state.trainingData.length > 10 ? (
+          return state.trainingData.length >= 20 ? (
             <Component {...props} />
           ) : (
             <Redirect to={{ pathname: '/', state: { from: props.location } }} />

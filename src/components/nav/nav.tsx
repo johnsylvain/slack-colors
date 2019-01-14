@@ -10,10 +10,6 @@ export class Nav extends React.Component<
   },
   {}
 > {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Consumer>

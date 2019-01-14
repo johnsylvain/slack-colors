@@ -1,3 +1,11 @@
+export function decimalToHex(input: number[]): string[] {
+  const rgb = input.map(n => Math.floor(n * 2.55 * 100));
+  const r = new Array(Math.ceil(rgb.length / 3))
+    .fill(null)
+    .map((_, i: number) => rgb.slice(i * 3, i * 3 + 3));
+  return r.map(rgbToHex);
+}
+
 export function hexToRgb(hex: string): number[] {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result
@@ -31,7 +39,9 @@ export function darken(color: number[]): number[] {
 }
 
 export function createPalette(useRgb?: boolean): any {
-  const c1 = generateColor([40, 255]);
+  const c1 = generateColor(
+    [[0, 70], [200, 255]][Math.floor(Math.random() * 2)]
+  );
   const c2 = generateColor([1, 255]);
   const white = [255, 255, 255];
   const palette = [
@@ -40,8 +50,8 @@ export function createPalette(useRgb?: boolean): any {
     c2,
     isLight(c2) ? generateColor([1, 100]) : white,
     darken(c1),
-    generateColor(isLight(c1) ? [1, 100] : [160, 255]),
-    generateColor([1, 135]),
+    generateColor(isLight(c1) ? [1, 100] : [200, 255]),
+    generateColor(isLight(c1) ? [90, 140] : [190, 235]),
     darken(c2)
   ];
   return useRgb ? palette : palette.map(rgbToHex);

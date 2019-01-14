@@ -11,21 +11,31 @@ export const { Consumer } = Context;
 
 export class Provider extends React.Component {
   state: IContextState = {
+    votingDisabled: false,
     palettes: initialPallets,
-    trainingData: loadState() || [],
+    trainingData: loadState('trainingData') || [],
+    generatedThemes: loadState('generatedThemes') || [],
     dispatch: (action: IAction) =>
       this.setState((state: IContextState) => {
-        const newState = reducer(action, state);
-        saveState(newState.trainingData);
+        let newState = reducer(action, state);
+        console.log(newState);
+        saveState('trainingData', newState.trainingData);
+        saveState('generatedThemes', newState.generatedThemes);
         return newState;
       })
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state.votingDisabled = this.state.trainingData.length >= 20;
+  }
+
   render() {
-    const {
-      state,
-      props: { children }
-    } = this;
-    return <Context.Provider value={state}>{children}</Context.Provider>;
+    return (
+      <Context.Provider value={this.state}>
+        {this.props.children}
+      </Context.Provider>
+    );
   }
 }

@@ -1,4 +1,5 @@
 import { css, keyframes } from 'emotion';
+import { theme } from '../../theme';
 
 const lift = keyframes`
   from {
@@ -15,7 +16,7 @@ const lift = keyframes`
 export default {
   stack: css({
     position: 'relative',
-    minHeight: 500,
+    minHeight: 460,
     animation: `${lift} 0.4s forwards`
   }),
 
@@ -35,18 +36,23 @@ export default {
       zIndex: 1000
     }),
     css({
-      opacity: 0.66,
+      opacity: 0.9,
       transform: 'scale(0.9) translateY(10px)',
       zIndex: 900
     }),
     css({
-      opacity: 0.33,
+      opacity: 0.8,
       transform: 'scale(0.8) translateY(20px)',
       zIndex: 800
     }),
     css({
       opacity: 0,
-      transform: 'scale(0.8) translateY(20px)',
+      transform: 'scale(0.7) translateY(30px)',
+      zIndex: 700
+    }),
+    css({
+      opacity: 0,
+      transform: 'scale(0.7) translateY(30px)',
       zIndex: 700
     })
   ]

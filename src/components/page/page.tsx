@@ -15,7 +15,7 @@ type PageProps = {
 
 const links: ILink[] = [
   { to: '/', text: 'Home' },
-  { to: '/train', text: 'Train' }
+  { to: '/train', text: 'Train AI' }
 ];
 
 export class Page extends React.Component<PageProps, {}> {

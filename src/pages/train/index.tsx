@@ -28,19 +28,21 @@ export class Train extends React.Component {
       <Consumer>
         {(state: IContextState) => (
           <Page>
-            <ProgressBar current={state.trainingData.length} max={10}>
+            <ProgressBar current={state.trainingData.length} max={20}>
               Training complete! View your results{' '}
               <Link to="/generate">here</Link>
             </ProgressBar>
             <ThemePreviewStack palettes={state.palettes} />
             <div className={styles.buttonGroup}>
               <button
+                disabled={state.votingDisabled}
                 onClick={this.vote(0)}
                 className={classNames(styles.button, styles.buttonNo)}
               >
                 <FontAwesomeIcon icon={faThumbsDown} />
               </button>
               <button
+                disabled={state.votingDisabled}
                 onClick={this.vote(1)}
                 className={classNames(styles.button, styles.buttonYes)}
               >
