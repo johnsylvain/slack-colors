@@ -15,7 +15,7 @@ export function reducer(action: IAction, state: IContextState): any {
 
       return {
         ...state,
-        votingDisabled: state.trainingData.length + 1 >= 20,
+        votingDisabled: state.trainingData.length + 1 >= 30,
         palettes: [...state.palettes.slice(1), createPalette()],
         trainingData: [
           ...state.trainingData,

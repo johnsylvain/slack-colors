@@ -28,7 +28,7 @@ export class Train extends React.Component {
       <Consumer>
         {(state: IContextState) => (
           <Page>
-            <ProgressBar current={state.trainingData.length} max={20}>
+            <ProgressBar current={state.trainingData.length} max={30}>
               Training complete! View your results{' '}
               <Link to="/generate">here</Link>
             </ProgressBar>

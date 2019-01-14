@@ -28,7 +28,7 @@ export class Provider extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state.votingDisabled = this.state.trainingData.length >= 20;
+    this.state.votingDisabled = this.state.trainingData.length >= 30;
   }
 
   render() {
