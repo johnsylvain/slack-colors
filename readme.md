@@ -1,3 +1,3 @@
-# Dev Themes
+# Slack Colors 🎨
 
-> AI code themes
+> AI Slack themes
