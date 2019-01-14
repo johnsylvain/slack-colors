@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createPalette } from './common/helpers';
 import { reducer } from './reducer';
-import { saveState, loadState } from './local-storage';
+import { saveState, loadState } from './common/local-storage';
 import { IAction, IContextState } from './interfaces';
 
 const initialPallets = new Array(4).fill(null).map(createPalette);
@@ -11,24 +11,31 @@ export const { Consumer } = Context;
 
 export class Provider extends React.Component {
   state: IContextState = {
+    maxVotingLimit: 35,
     votingDisabled: false,
     palettes: initialPallets,
     trainingData: loadState('trainingData') || [],
     generatedThemes: loadState('generatedThemes') || [],
-    dispatch: (action: IAction) =>
-      this.setState((state: IContextState) => {
-        let newState = reducer(action, state);
-        console.log(newState);
-        saveState('trainingData', newState.trainingData);
-        saveState('generatedThemes', newState.generatedThemes);
-        return newState;
-      })
+    actions: {
+      submitVote: vote =>
+        this.dispatch({ type: 'CYCLE_THEMES', payload: vote }),
+      generateThemes: () => this.dispatch({ type: 'GENERATE_THEMES' })
+    }
   };
+
+  dispatch = (action: IAction) =>
+    this.setState((state: IContextState) => {
+      let newState = reducer(action, state);
+      saveState('trainingData', newState.trainingData);
+      saveState('generatedThemes', newState.generatedThemes);
+      return newState;
+    });
 
   constructor(props) {
     super(props);
 
-    this.state.votingDisabled = this.state.trainingData.length >= 30;
+    this.state.votingDisabled =
+      this.state.trainingData.length >= this.state.maxVotingLimit;
   }
 
   render() {

@@ -1,4 +1,4 @@
-import { train, run } from './neural-network';
+import { train, run } from './common/neural-network';
 import { createPalette, hexToRgb } from './common/helpers';
 import { IAction, IContextState } from './interfaces';
 
@@ -15,7 +15,7 @@ export function reducer(action: IAction, state: IContextState): any {
 
       return {
         ...state,
-        votingDisabled: state.trainingData.length + 1 >= 30,
+        votingDisabled: state.trainingData.length + 1 >= state.maxVotingLimit,
         palettes: [...state.palettes.slice(1), createPalette()],
         trainingData: [
           ...state.trainingData,
@@ -26,10 +26,9 @@ export function reducer(action: IAction, state: IContextState): any {
         ]
       };
     case GENERATE_THEMES:
-      train(state.trainingData);
       return {
         ...state,
-        generatedThemes: run()
+        generatedThemes: run(100_000, 10)
       };
     default:
       return state;

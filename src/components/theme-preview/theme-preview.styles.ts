@@ -28,6 +28,14 @@ export default (palette: string[]) => {
       minHeight: '400px'
     }),
 
+    windowHover: css({
+      transition: '0.2s ease',
+
+      '&:hover': {
+        boxShadow: theme.shadows.xl
+      }
+    }),
+
     sidebar: css({
       background: columnBG,
       padding: theme.gutters.md

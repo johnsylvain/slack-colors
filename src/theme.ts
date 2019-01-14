@@ -17,10 +17,11 @@ const colors = {
 };
 
 const shadows = {
-  lg: '0 6px 25px rgba(0,0,0,0.18)'
+  lg: '0 6px 25px rgba(0,0,0,0.18)',
+  xl: '0 8px 35px rgba(0,0,0,0.23)'
 };
 
-const rem = (px: number) => `${Math.round(px / rootFontSize * 100) / 100}rem`;
+const rem = (px: number) => `${Math.round((px / rootFontSize) * 100) / 100}rem`;
 
 const theme = {
   colors,

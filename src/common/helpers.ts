@@ -35,7 +35,7 @@ export function isLight(color: number[]): boolean {
 }
 
 export function darken(color: number[]): number[] {
-  return color.map(c => c - 10);
+  return color.map(c => (c - 10 < 0 ? 0 : c - 10));
 }
 
 export function createPalette(useRgb?: boolean): any {

@@ -14,12 +14,9 @@ export class Train extends React.Component {
   static contextType = Context;
 
   vote = (rating: number) => () => {
-    this.context.dispatch({
-      type: 'CYCLE_THEMES',
-      payload: {
-        palette: this.context.palettes[0],
-        userRating: rating
-      }
+    this.context.actions.submitVote({
+      palette: this.context.palettes[0],
+      userRating: rating
     });
   };
 
@@ -28,7 +25,10 @@ export class Train extends React.Component {
       <Consumer>
         {(state: IContextState) => (
           <Page>
-            <ProgressBar current={state.trainingData.length} max={30}>
+            <ProgressBar
+              current={state.trainingData.length}
+              max={state.maxVotingLimit}
+            >
               Training complete! View your results{' '}
               <Link to="/generate">here</Link>
             </ProgressBar>

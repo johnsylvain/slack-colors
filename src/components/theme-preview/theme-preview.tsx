@@ -13,7 +13,11 @@ export const ThemePreview: React.SFC<{
   const styles = stylesFn(palette);
 
   return (
-    <div className={styles.window}>
+    <div
+      className={classNames(styles.window, {
+        [styles.windowHover]: showPaletteColors
+      })}
+    >
       <div className={styles.sidebar}>
         <span className={styles.teamMenuName}>Dunder Mifflin</span>
         <span className={styles.teamMenuUser}>Michael Scott</span>
