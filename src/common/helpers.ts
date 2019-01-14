@@ -40,7 +40,7 @@ export function darken(color: number[]): number[] {
 
 export function createPalette(useRgb?: boolean): any {
   const c1 = generateColor(
-    [[0, 70], [200, 255]][Math.floor(Math.random() * 2)]
+    [[0, 70], [230, 255]][Math.floor(Math.random() * 2)]
   );
   const c2 = generateColor([1, 255]);
   const white = [255, 255, 255];

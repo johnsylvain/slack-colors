@@ -28,7 +28,7 @@ export function reducer(action: IAction, state: IContextState): any {
     case GENERATE_THEMES:
       return {
         ...state,
-        generatedThemes: run(100_000, 10)
+        generatedThemes: run(500_000, 10)
       };
     default:
       return state;

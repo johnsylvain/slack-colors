@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './loader.styles';
 
-export const Loader: React.SFC<{ children: React.ReactNode }> = ({
+export const Loader: React.SFC<{ children?: React.ReactNode }> = ({
   children
 }) => (
   <div>

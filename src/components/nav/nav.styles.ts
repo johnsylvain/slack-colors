@@ -3,7 +3,8 @@ import { theme } from '../../theme';
 
 export default {
   brand: css({
-    fontWeight: theme.fontWeights.bold,
+    fontWeight: theme.fontWeights.black,
+    fontSize: theme.fontSizes.lg,
 
     '&:before': {
       content: '""',
