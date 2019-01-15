@@ -1,7 +1,5 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import format from 'date-fns/format';
-import subMinutes from 'date-fns/sub_minutes';
 import stylesFn from './theme-preview.styles';
 // @ts-ignore
 import avatar from '../../assets/avatar.jpg';
@@ -11,6 +9,10 @@ export const ThemePreview: React.SFC<{
   showPaletteColors: boolean;
 }> = ({ palette, showPaletteColors }) => {
   const styles = stylesFn(palette);
+  const formatDate = (date: Date) =>
+    `${date.getHours() % 12 || 12}:${('0' + date.getMinutes()).slice(-2)} ${
+      date.getHours() >= 12 ? 'PM' : 'AM'
+    }`;
 
   return (
     <div
@@ -19,8 +21,10 @@ export const ThemePreview: React.SFC<{
       })}
     >
       <div className={styles.sidebar}>
-        <span className={styles.teamMenuName}>Dunder Mifflin</span>
-        <span className={styles.teamMenuUser}>Michael Scott</span>
+        <div className={styles.teamMenu}>
+          <span className={styles.teamMenuName}>Dunder Mifflin</span>
+          <span className={styles.teamMenuUser}>Michael Scott</span>
+        </div>
 
         <div className={styles.list}>
           <div className={classNames(styles.listItem, styles.listHeading)}>
@@ -83,7 +87,7 @@ export const ThemePreview: React.SFC<{
             </div>
           )}
           <div className={styles.dateDivider}>
-            <span>{format(new Date(), 'MMMM Do, YYYY')}</span>
+            <span>Today</span>
           </div>
           <div className={styles.message}>
             <div>
@@ -93,7 +97,7 @@ export const ThemePreview: React.SFC<{
               <span className={styles.messageUser}>
                 Andrew Bernard{' '}
                 <span className={styles.messageTime}>
-                  {format(subMinutes(new Date(), 7), 'h:mm A')}
+                  {formatDate(new Date())}
                 </span>
               </span>
               <span className={styles.messageContent}>Rid dit dit di do</span>

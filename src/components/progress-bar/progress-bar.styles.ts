@@ -28,7 +28,15 @@ export default {
     opacity: 0,
     transition: '0.4s ease',
     whiteSpace: 'nowrap',
-    pointerEvents: 'none'
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+
+    a: {
+      fontWeight: theme.fontWeights.black
+    }
   }),
 
   loaderMessageVisible: css({
@@ -37,6 +45,10 @@ export default {
   }),
 
   loaderComplete: css({
-    height: 40
+    height: 50,
+
+    div: {
+      paddingRight: theme.gutters.md
+    }
   })
 };

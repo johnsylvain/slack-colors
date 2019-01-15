@@ -19,7 +19,9 @@ export class Provider extends React.Component {
     actions: {
       submitVote: vote =>
         this.dispatch({ type: 'CYCLE_THEMES', payload: vote }),
-      generateThemes: () => this.dispatch({ type: 'GENERATE_THEMES' })
+      generateThemes: () => this.dispatch({ type: 'GENERATE_THEMES' }),
+      resetVotes: () => this.dispatch({ type: 'RESET_VOTES' }),
+      refreshThemes: () => this.dispatch({ type: 'REFRESH_THEMES' })
     }
   };
 

@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { Page } from '../../components/page';
 import { ThemePreviewStack } from '../../components/theme-preview-stack';
@@ -9,6 +7,12 @@ import { ProgressBar } from '../../components/progress-bar';
 import { Consumer, Context } from '../../context';
 import { IContextState } from '../../interfaces';
 import styles from './train.styles';
+// @ts-ignore
+import thumbsUp from '../../assets/thumbs-up.svg';
+// @ts-ignore
+import thumbsDown from '../../assets/thumbs-down.svg';
+// @ts-ignore
+import refresh from '../../assets/refresh.svg';
 
 export class Train extends React.Component {
   static contextType = Context;
@@ -20,6 +24,10 @@ export class Train extends React.Component {
     });
   };
 
+  reset = () => {
+    this.context.actions.resetVotes();
+  };
+
   render() {
     return (
       <Consumer>
@@ -29,8 +37,20 @@ export class Train extends React.Component {
               current={state.trainingData.length}
               max={state.maxVotingLimit}
             >
-              Training complete! View your results{' '}
-              <Link to="/generate">here</Link>
+              <span>
+                Training complete! View your results{' '}
+                <Link to="/generate">here</Link>.
+              </span>
+              <span>
+                <span>Restart Training</span>
+                <button
+                  disabled={!state.votingDisabled}
+                  className={classNames(styles.button, styles.buttonRestart)}
+                  onClick={this.reset}
+                >
+                  <img src={refresh} alt="" />
+                </button>
+              </span>
             </ProgressBar>
             <ThemePreviewStack palettes={state.palettes} />
             <div className={styles.buttonGroup}>
@@ -39,14 +59,15 @@ export class Train extends React.Component {
                 onClick={this.vote(0)}
                 className={classNames(styles.button, styles.buttonNo)}
               >
-                <FontAwesomeIcon icon={faThumbsDown} />
+                <img src={thumbsDown} alt="" />
               </button>
+
               <button
                 disabled={state.votingDisabled}
                 onClick={this.vote(1)}
                 className={classNames(styles.button, styles.buttonYes)}
               >
-                <FontAwesomeIcon icon={faThumbsUp} />
+                <img src={thumbsUp} alt="" />
               </button>
             </div>
           </Page>

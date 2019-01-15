@@ -15,7 +15,7 @@ type PageProps = {
 
 const links: ILink[] = [
   { to: '/', text: 'Home' },
-  { to: '/train', text: 'Train AI' }
+  { to: '/train', text: 'Train' }
 ];
 
 export class Page extends React.Component<PageProps, {}> {
@@ -27,7 +27,13 @@ export class Page extends React.Component<PageProps, {}> {
             <Helmet>
               <title>Slack Colors</title>
             </Helmet>
-            <Nav links={links} />
+            <Nav
+              links={
+                state.votingDisabled
+                  ? [...links, { to: '/generate', text: 'Generate' }]
+                  : links
+              }
+            />
             <div className={styles.body}>{this.props.children}</div>
             <Footer>
               <p>Built by John Sylvain</p>

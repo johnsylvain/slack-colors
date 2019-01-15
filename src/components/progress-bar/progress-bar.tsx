@@ -12,7 +12,7 @@ export const ProgressBar = ({ current, max, children }) => (
       className={classNames(styles.loader, {
         [styles.loaderComplete]: current >= max
       })}
-      style={{ width: `${(current >= max ? max : current) / max * 100}%` }}
+      style={{ width: `${((current >= max ? max : current) / max) * 100}%` }}
     >
       <span
         className={classNames(styles.loaderMessage, {

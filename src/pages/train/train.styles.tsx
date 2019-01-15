@@ -18,21 +18,22 @@ const thumbsUp = keyframes`
     transform: translateY(-6px) rotate(-5deg) scale(1.1);
   }
 `;
+
 const thumbsDown = keyframes`
   0% {
-    transform: rotateY(180deg) translateY(0px) rotate(0deg);
+    transform: translateY(0px) rotate(0deg);
   }
 
   20% {
-    transform: rotateY(180deg) translateY(-6px) rotate(-5deg) scale(0.9);
+    transform: translateY(-6px) rotate(5deg) scale(0.9);
   }
 
   40% {
-    transform: rotateY(180deg) translateY(6px) rotate(5deg) scale(1.1);
+    transform: translateY(6px) rotate(-5deg) scale(1.1);
   }
 
   80% {
-    transform: rotateY(180deg) translateY(6px) rotate(5deg) scale(1.1);
+    transform: translateY(6px) rotate(-5deg) scale(1.1);
   }
 `;
 
@@ -51,9 +52,12 @@ export default {
     outline: 0,
     borderRadius: '50%',
 
-    svg: {
+    img: {
       position: 'relative',
-      transformOrigin: 'center'
+      transformOrigin: 'center',
+      width: 24,
+      height: 24,
+      pointerEvents: 'none'
     },
 
     '&:before': {
@@ -76,17 +80,32 @@ export default {
   }),
 
   buttonYes: css({
-    '&:focus svg': {
+    '&:focus img': {
       animation: `${thumbsUp} 0.7s ease-out`
     }
   }),
 
   buttonNo: css({
-    svg: {
-      transform: 'rotateY(180deg)'
-    },
-    '&:focus svg': {
+    '&:focus img': {
       animation: `${thumbsDown} 0.7s ease-out`
+    }
+  }),
+
+  buttonRestart: css({
+    display: 'inline-flex',
+    transition: '0.3s ease',
+    transformOrigin: 'center',
+    marginLeft: theme.gutters.sm,
+    width: '25px',
+    height: '25px',
+
+    img: {
+      width: '15px',
+      height: '15px'
+    },
+
+    '&:focus': {
+      transform: 'rotate(360deg)'
     }
   }),
 

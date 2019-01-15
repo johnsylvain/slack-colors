@@ -11,9 +11,9 @@ export default (palette: string[]) => {
     textColor,
     activePresence,
     mentionBadge
-  ] = palette;
-  const textColorLight = `${textColor}aa`;
-  const textColorLighter = `${textColor}77`;
+  ]: string[] = palette;
+  const textColorLight: string = `${textColor}aa`;
+  const textColorLighter: string = `${textColor}77`;
 
   return {
     window: css({
@@ -166,6 +166,16 @@ export default (palette: string[]) => {
       fontFamily: theme.fonts.sansSerif
     }),
 
+    teamMenu: css({
+      margin: -theme.gutters.md,
+      padding: theme.gutters.md,
+      cursor: 'pointer',
+
+      '&:hover': {
+        backgroundColor: menuBGHover
+      }
+    }),
+
     teamMenuName: css({
       fontWeight: theme.fontWeights.black,
       fontSize: theme.fontSizes.lg,
@@ -211,7 +221,7 @@ export default (palette: string[]) => {
       cursor: 'default',
 
       '&:hover': {
-        backgroundColor: 'transparent'
+        backgroundColor: columnBG
       }
     }),
 

@@ -17,7 +17,7 @@ export class Home extends React.Component {
               </Jumbotron.Subtitle>
               <Jumbotron.CTA>
                 <Button to="/train">Get started</Button>
-                {state.trainingData.length > 10 && (
+                {state.votingDisabled && (
                   <Button to="/generate">Your themes</Button>
                 )}
               </Jumbotron.CTA>

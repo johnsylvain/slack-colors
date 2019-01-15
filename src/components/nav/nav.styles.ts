@@ -36,7 +36,7 @@ export default {
       fontSize: theme.fontSizes.md,
 
       '&:not(:first-child)': {
-        marginLeft: '10px'
+        marginLeft: theme.gutters.md
       },
 
       a: {
@@ -44,5 +44,9 @@ export default {
         textDecoration: 'none'
       }
     }
+  }),
+
+  linkActive: css({
+    fontWeight: theme.fontWeights.black
   })
 };
