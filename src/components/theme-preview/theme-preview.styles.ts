@@ -25,7 +25,8 @@ export default (palette: string[]) => {
       overflow: 'hidden',
       boxShadow: theme.shadows.lg,
       gridTemplateColumns: '200px 1fr',
-      minHeight: '400px'
+      minHeight: '400px',
+      position: 'relative'
     }),
 
     windowHover: css({

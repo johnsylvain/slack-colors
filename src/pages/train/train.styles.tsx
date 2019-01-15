@@ -91,24 +91,6 @@ export default {
     }
   }),
 
-  buttonRestart: css({
-    display: 'inline-flex',
-    transition: '0.3s ease',
-    transformOrigin: 'center',
-    marginLeft: theme.gutters.sm,
-    width: '25px',
-    height: '25px',
-
-    img: {
-      width: '15px',
-      height: '15px'
-    },
-
-    '&:focus': {
-      transform: 'rotate(360deg)'
-    }
-  }),
-
   buttonGroup: css({
     display: 'flex',
     justifyContent: 'space-around'

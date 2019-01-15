@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { Page } from '../../components/page';
 import { ThemePreviewStack } from '../../components/theme-preview-stack';
@@ -37,20 +36,7 @@ export class Train extends React.Component {
               current={state.trainingData.length}
               max={state.maxVotingLimit}
             >
-              <span>
-                Training complete! View your results{' '}
-                <Link to="/generate">here</Link>.
-              </span>
-              <span>
-                <span>Restart Training</span>
-                <button
-                  disabled={!state.votingDisabled}
-                  className={classNames(styles.button, styles.buttonRestart)}
-                  onClick={this.reset}
-                >
-                  <img src={refresh} alt="" />
-                </button>
-              </span>
+              <span>Training complete!</span>
             </ProgressBar>
             <ThemePreviewStack palettes={state.palettes} />
             <div className={styles.buttonGroup}>

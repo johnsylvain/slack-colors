@@ -4,7 +4,7 @@ import { theme } from '../../theme';
 const loader = keyframes`
   to {
     opacity: 0.1;
-    transform: translate3d(0, -1rem, 0);
+    transform: translate3d(0, -1rem, 0) scale(0.7);
   }
 `;
 

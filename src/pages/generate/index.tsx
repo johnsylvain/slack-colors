@@ -123,37 +123,33 @@ export class Generate extends React.Component {
 
   render() {
     return (
-      <Consumer>
-        {(state: any) => (
-          <Page>
-            {this.context.generatedThemes.length ? (
+      <Page>
+        {this.context.generatedThemes.length ? (
+          <div>
+            <div className={styles.header}>
+              <h2>Your themes.</h2>
               <div>
-                <div className={styles.header}>
-                  <h2>Your themes.</h2>
-                  <div>
-                    <button className={styles.button} onClick={this.refresh}>
-                      <span>Refresh themes</span>
-                      <img src={refresh} alt="" />
-                    </button>
-                  </div>
-                </div>
-                <Stagger>
-                  {this.context.generatedThemes.map(palette => (
-                    <div
-                      key={palette.theme.join()}
-                      style={{ marginBottom: theme.gutters.lg }}
-                    >
-                      <ThemePreview showPaletteColors palette={palette.theme} />
-                    </div>
-                  ))}
-                </Stagger>
+                <button className={styles.button} onClick={this.refresh}>
+                  <span>Refresh themes</span>
+                  <img src={refresh} alt="" />
+                </button>
               </div>
-            ) : (
-              <Loader>Generating your themes.</Loader>
-            )}
-          </Page>
+            </div>
+            <Stagger>
+              {this.context.generatedThemes.map(palette => (
+                <div
+                  key={palette.theme.join()}
+                  style={{ marginBottom: theme.gutters.lg }}
+                >
+                  <ThemePreview showPaletteColors palette={palette.theme} />
+                </div>
+              ))}
+            </Stagger>
+          </div>
+        ) : (
+          <Loader>Generating your themes.</Loader>
         )}
-      </Consumer>
+      </Page>
     );
   }
 }

@@ -55,5 +55,17 @@ export default {
       transform: 'scale(0.7) translateY(30px)',
       zIndex: 700
     })
-  ]
+  ],
+
+  headline: css({
+    fontWeight: theme.fontWeights.bold,
+    fontSize: theme.fontSizes.lg,
+    marginBottom: theme.gutters.md
+  }),
+
+  buttonGroup: css({
+    '> *:not(:last-child)': {
+      marginRight: theme.gutters.md
+    }
+  })
 };
