@@ -16,10 +16,12 @@ export class Train extends React.Component {
   static contextType = Context;
 
   vote = (rating: number): (() => void) => (): void => {
-    this.context.actions.submitVote({
-      palette: this.context.palettes[0],
-      userRating: rating
-    });
+    if (!this.context.votingDisabled) {
+      this.context.actions.submitVote({
+        palette: this.context.palettes[0],
+        userRating: rating
+      });
+    }
   };
 
   reset = (): void => {

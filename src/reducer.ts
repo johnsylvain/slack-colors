@@ -30,7 +30,7 @@ export function reducer(action: IAction, state: IContextState): any {
     case GENERATE_THEMES:
       return {
         ...state,
-        generatedThemes: run(250_000, 10)
+        generatedThemes: run(100_000, 10)
       };
     case RESET_VOTES:
       return {

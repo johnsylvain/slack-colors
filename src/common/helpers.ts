@@ -42,7 +42,7 @@ export function createPalette(useRgb?: boolean): any {
   const c1 = generateColor(
     [[0, 70], [230, 255]][Math.floor(Math.random() * 2)]
   );
-  const c2 = generateColor([1, 255]);
+  const c2 = generateColor(isLight(c1) ? [70, 190] : [190, 255]);
   const white = [255, 255, 255];
   const palette = [
     c1,
@@ -50,9 +50,9 @@ export function createPalette(useRgb?: boolean): any {
     c2,
     isLight(c2) ? generateColor([1, 100]) : white,
     darken(c1),
-    generateColor(isLight(c1) ? [1, 100] : [200, 255]),
-    generateColor(isLight(c1) ? [90, 140] : [190, 235]),
-    darken(c2)
+    generateColor(isLight(c1) ? [30, 80] : [220, 240]),
+    generateColor(isLight(c1) ? [90, 140] : [210, 245]),
+    c2
   ];
   return useRgb ? palette : palette.map(rgbToHex);
 }
