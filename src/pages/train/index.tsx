@@ -15,22 +15,22 @@ import thumbsDown from '../../assets/thumbs-down.svg';
 export class Train extends React.Component {
   static contextType = Context;
 
-  vote = (rating: number) => () => {
+  vote = (rating: number): (() => void) => (): void => {
     this.context.actions.submitVote({
       palette: this.context.palettes[0],
       userRating: rating
     });
   };
 
-  reset = () => {
+  reset = (): void => {
     this.context.actions.resetVotes();
   };
 
-  render() {
+  render(): React.ReactNode {
     return (
       <Consumer>
         {(state: IContextState) => (
-          <Page>
+          <Page title="Train">
             <KeyHandler
               keyEventName="keyup"
               keyCode={37}

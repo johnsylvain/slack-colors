@@ -2,7 +2,11 @@ import * as React from 'react';
 import classNames from 'classnames';
 import styles from './progress-bar.styles';
 
-export const ProgressBar = ({ current, max, children }) => (
+export const ProgressBar: React.SFC<{
+  current: number;
+  max: number;
+  children?: React.ReactNode;
+}> = ({ current, max, children }) => (
   <div
     className={classNames(styles.background, {
       [styles.loaderComplete]: current >= max

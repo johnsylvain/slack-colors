@@ -3,12 +3,13 @@ import { Consumer } from '../../context';
 import { Page } from '../../components/page';
 import { Button } from '../../components/button';
 import { Jumbotron } from '../../components/jumbotron';
+import { IContextState } from '../../interfaces';
 
 export class Home extends React.Component {
-  render() {
+  render(): React.ReactNode {
     return (
       <Consumer>
-        {(state: any) => (
+        {(state: IContextState) => (
           <Page>
             <Jumbotron>
               <Jumbotron.Title>Personalized Slack themes. 🎨</Jumbotron.Title>

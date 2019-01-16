@@ -22,7 +22,7 @@ export class Jumbotron extends React.Component<CompoundComponentProps, {}> {
   static Subtitle = Subtitle;
   static CTA = CTA;
 
-  render() {
+  render(): React.ReactNode {
     return <div className={styles.container}>{this.props.children}</div>;
   }
 }

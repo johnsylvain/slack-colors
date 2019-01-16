@@ -5,19 +5,18 @@ import stylesFn from './theme-preview.styles';
 // @ts-ignore
 import avatar from '../../assets/avatar.jpg';
 
-export class ThemePreview extends React.Component<
-  {
-    palette: string[];
-    showPaletteColors?: boolean;
-    children?: React.ReactNode;
-  },
-  {}
-> {
+type ThemePreviewProps = {
+  palette: string[];
+  showPaletteColors?: boolean;
+  children?: React.ReactNode;
+};
+
+export class ThemePreview extends React.Component<ThemePreviewProps, {}> {
   static Overlay = Overlay;
 
-  render() {
+  render(): React.ReactNode {
     const styles = stylesFn(this.props.palette);
-    const formatDate = (date: Date) =>
+    const formatDate = (date: Date): string =>
       `${date.getHours() % 12 || 12}:${('0' + date.getMinutes()).slice(-2)} ${
         date.getHours() >= 12 ? 'PM' : 'AM'
       }`;

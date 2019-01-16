@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './button.styles';
 
-interface ButtonProps {
+type ButtonProps = {
   href?: string;
   to?: string;
   onClick?: (e: any) => void;
   secondary?: boolean;
   children?: React.ReactNode;
-}
+};
 
 export const Button: React.SFC<ButtonProps> = ({
   children,

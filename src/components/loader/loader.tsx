@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styles from './loader.styles';
 
-export const Loader: React.SFC<{ children?: React.ReactNode }> = ({
-  children
-}) => (
+type LoaderProps = { children?: React.ReactNode };
+
+export const Loader: React.SFC<LoaderProps> = ({ children }) => (
   <div>
     <div className={styles.loader}>
       <div />

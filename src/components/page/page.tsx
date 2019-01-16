@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
-
 import { Consumer } from '../../context';
 import { Nav } from '../nav';
 import { Footer } from '../footer';
-import { ILink } from '../../interfaces';
+import { ILink, IContextState } from '../../interfaces';
 
 import styles from './page.styles';
 
@@ -13,25 +12,25 @@ type PageProps = {
   title?: string;
 };
 
-const links: ILink[] = [
-  { to: '/', text: 'Home' },
-  { to: '/train', text: 'Train' }
-];
-
 export class Page extends React.Component<PageProps, {}> {
+  links: ILink[] = [{ to: '/', text: 'Home' }, { to: '/train', text: 'Train' }];
+
   render() {
     return (
       <Consumer>
-        {(state: any) => (
+        {(state: IContextState) => (
           <div className={styles.page}>
             <Helmet>
-              <title>Slack Colors</title>
+              <title>
+                {(this.props.title ? `${this.props.title} - ` : '') +
+                  'Slack Colors'}
+              </title>
             </Helmet>
             <Nav
               links={
                 state.votingDisabled
-                  ? [...links, { to: '/generate', text: 'Generate' }]
-                  : links
+                  ? [...this.links, { to: '/generate', text: 'Generate' }]
+                  : this.links
               }
             />
             <div className={styles.body}>{this.props.children}</div>

@@ -10,20 +10,20 @@ export class ThemePreviewStack extends React.Component<
   { palettes: string[][] },
   {}
 > {
-  render() {
+  render(): React.ReactNode {
     return (
       <Consumer>
         {(state: IContextState) => (
           <div className={styles.stack}>
-            {this.props.palettes.map((p: any, index: number) => (
+            {this.props.palettes.map((palette: any, index: number) => (
               <div
-                key={p.join()}
+                key={palette.join()}
                 className={classNames(
                   styles.stackItem,
                   styles.stackItemPositions[index]
                 )}
               >
-                <ThemePreview palette={p}>
+                <ThemePreview palette={palette}>
                   {state.votingDisabled && (
                     <ThemePreview.Overlay>
                       {index === 0 && (
