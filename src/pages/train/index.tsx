@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import { KeyHandler } from '../../components/key-handler';
 import { Page } from '../../components/page';
 import { ThemePreviewStack } from '../../components/theme-preview-stack';
 import { ProgressBar } from '../../components/progress-bar';
@@ -10,8 +11,6 @@ import styles from './train.styles';
 import thumbsUp from '../../assets/thumbs-up.svg';
 // @ts-ignore
 import thumbsDown from '../../assets/thumbs-down.svg';
-// @ts-ignore
-import refresh from '../../assets/refresh.svg';
 
 export class Train extends React.Component {
   static contextType = Context;
@@ -32,6 +31,17 @@ export class Train extends React.Component {
       <Consumer>
         {(state: IContextState) => (
           <Page>
+            <KeyHandler
+              keyEventName="keyup"
+              keyCode={37}
+              onKeyHandle={this.vote(0)}
+            />
+            <KeyHandler
+              keyEventName="keyup"
+              keyCode={39}
+              onKeyHandle={this.vote(1)}
+            />
+
             <ProgressBar
               current={state.trainingData.length}
               max={state.maxVotingLimit}
