@@ -1,3 +1,6 @@
+const compose = (...fns) => initialValue =>
+  fns.reduce((val, fn) => fn(val), initialValue);
+
 export function decimalToHex(input: number[]): string[] {
   const rgb = input.map(n => Math.floor(n * 2.55 * 100));
   const r = new Array(Math.ceil(rgb.length / 3))
@@ -21,38 +24,58 @@ export function rgbToHex([r, g, b]: number[]): string {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
-export function generateColor(range: number[]): number[] {
-  const [min, max] = range;
-  return new Array(3)
-    .fill(null)
-    .map(() => Math.round(Math.random() * (max - min) + min));
+function generateHsl(contraints: any = { lightness: [0, 1] }): number[] {
+  const {
+    lightness: [min, max]
+  } = contraints;
+
+  return [
+    Math.round(Math.random() * 360),
+    Math.random(),
+    Math.random() * (max - min) + min
+  ];
 }
 
-export function isLight(color: number[]): boolean {
-  const [r, g, b] = color;
-  const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  return luma > 150;
+function hslToRgb(hsl) {
+  const [h, s, l] = hsl;
+  const a = s * Math.min(l, 1 - l);
+  const f = (n, k = (n + h / 30) % 12) =>
+    l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+  return [f(0), f(8), f(4)].map((n: number) => Math.round(n * 2.55 * 100));
 }
 
-export function darken(color: number[]): number[] {
-  return color.map((c: number) => (c - 10 < 0 ? 0 : c - 10));
+function isLight(color: number[]): boolean {
+  const [h, s, l] = color;
+  return l > 0.5;
 }
 
-export function createPalette(useRgb?: boolean): any {
-  const c1 = generateColor(
-    [[0, 70], [230, 255]][Math.floor(Math.random() * 2)]
-  );
-  const c2 = generateColor(isLight(c1) ? [70, 190] : [190, 255]);
-  const white = [255, 255, 255];
+function darken(color: number[]): number[] {
+  const [h, s, l] = color;
+  return [h, s, l - 0.08];
+}
+
+const hslToHex = compose(
+  hslToRgb,
+  rgbToHex
+);
+
+export function createPalette(useHsl?: boolean): any {
+  const c1 = generateHsl({
+    lightness: [[0, 0.2], [0.8, 0.99]][Math.floor(Math.random() * 2)]
+  });
+  const c2 = generateHsl({ lightness: isLight(c1) ? [0.2, 0.4] : [0.85, 1] });
+  const white = [0, 1, 1];
+
   const palette = [
     c1,
     darken(c1),
     c2,
-    isLight(c2) ? generateColor([1, 100]) : white,
+    isLight(c2) ? generateHsl({ lightness: [0, 0.3] }) : white,
     darken(c1),
-    generateColor(isLight(c1) ? [30, 80] : [220, 240]),
-    generateColor(isLight(c1) ? [90, 140] : [210, 245]),
+    generateHsl({ lightness: isLight(c1) ? [0, 0.3] : [0.8, 0.99] }),
+    generateHsl({ lightness: isLight(c1) ? [0.1, 0.3] : [0.8, 0.95] }),
     c2
   ];
-  return useRgb ? palette : palette.map(rgbToHex);
+
+  return useHsl ? palette : palette.map(hslToHex);
 }
