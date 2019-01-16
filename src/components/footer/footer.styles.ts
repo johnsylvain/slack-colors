@@ -9,6 +9,16 @@ export default {
 
     p: {
       marginBottom: theme.gutters.sm
+    },
+
+    a: {
+      color: theme.colors.text,
+      fontWeight: theme.fontWeights.bold,
+      textDecoration: 'none',
+
+      '&:hover': {
+        textDecoration: 'underline'
+      }
     }
   })
 };

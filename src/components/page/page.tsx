@@ -4,6 +4,8 @@ import { Consumer } from '../../context';
 import { Nav } from '../nav';
 import { Footer } from '../footer';
 import { ILink, IContextState } from '../../interfaces';
+// @ts-ignore
+import favicon from '../../assets/favicon.ico';
 
 import styles from './page.styles';
 
@@ -21,6 +23,7 @@ export class Page extends React.Component<PageProps, {}> {
         {(state: IContextState) => (
           <div className={styles.page}>
             <Helmet>
+              <link rel="shortcut icon" type="image/x-icon" href={favicon} />
               <title>
                 {(this.props.title ? `${this.props.title} - ` : '') +
                   'Slack Colors'}
@@ -35,7 +38,12 @@ export class Page extends React.Component<PageProps, {}> {
             />
             <div className={styles.body}>{this.props.children}</div>
             <Footer>
-              <p>Built by John Sylvain</p>
+              <p>
+                Built with ☕️ by{' '}
+                <a href="https://johnsylvain.me" target="_blank">
+                  John Sylvain
+                </a>
+              </p>
               <p>&copy; {new Date().getFullYear()}</p>
             </Footer>
           </div>

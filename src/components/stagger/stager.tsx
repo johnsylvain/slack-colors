@@ -2,9 +2,9 @@ import * as React from 'react';
 import classNames from 'classnames';
 import stylesFn from './stager.styles';
 
-export const Stagger: React.SFC<{ children: React.ReactNode }> = ({
-  children
-}) => {
+type StaggerProps = { children: React.ReactNode };
+
+export const Stagger: React.SFC<StaggerProps> = ({ children }) => {
   const styles = stylesFn(React.Children.count(children));
 
   return (
