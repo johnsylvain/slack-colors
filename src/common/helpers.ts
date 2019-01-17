@@ -1,42 +1,33 @@
-const compose = (...fns) => initialValue =>
+const compose = (...fns: ((a: any) => any)[]) => (initialValue: any) =>
   fns.reduce((val, fn) => fn(val), initialValue);
 
-export function decimalToHex(input: number[]): string[] {
-  const rgb = input.map(n => Math.floor(n * 2.55 * 100));
-  const r = new Array(Math.ceil(rgb.length / 3))
-    .fill(null)
-    .map((_, i: number) => rgb.slice(i * 3, i * 3 + 3));
-  return r.map(rgbToHex);
-}
+export const flatten = (array: any[]): any[] =>
+  array.reduce((acc: any[], cur: any[]) => [...acc, ...cur], []);
 
-export function hexToRgb(hex: string): number[] {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? [
-        parseInt(result[1], 16),
-        parseInt(result[2], 16),
-        parseInt(result[3], 16)
-      ]
-    : null;
-}
-
-export function rgbToHex([r, g, b]: number[]): string {
+function rgbToHex([r, g, b]: number[]): string {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
 
-function generateHsl(contraints: any = { lightness: [0, 1] }): number[] {
-  const {
-    lightness: [min, max]
-  } = contraints;
+function generateHsl(
+  lightness: number[] = [0, 1],
+  saturation: number = Math.random()
+): number[] {
+  const [lMin, lMax] = lightness;
+  // const [sMin, sMax] = saturation;
 
   return [
     Math.round(Math.random() * 360),
-    Math.random(),
-    Math.random() * (max - min) + min
+    // Math.random() * (sMax - sMin) + sMin,
+    saturation,
+    Math.random() * (lMax - lMin) + lMin
   ];
 }
 
-function hslToRgb(hsl) {
+export function formatHsl([h, s, l]: number[], opacity: number = 1): string {
+  return `hsla(${h}deg, ${s * 100}%, ${l * 100}%, ${opacity})`;
+}
+
+function hslToRgb(hsl: number[]) {
   const [h, s, l] = hsl;
   const a = s * Math.min(l, 1 - l);
   const f = (n, k = (n + h / 30) % 12) =>
@@ -46,36 +37,39 @@ function hslToRgb(hsl) {
 
 function isLight(color: number[]): boolean {
   const [h, s, l] = color;
-  return l > 0.5;
+  return l > 0.6;
 }
 
 function darken(color: number[]): number[] {
   const [h, s, l] = color;
-  return [h, s, l - 0.08];
+  return [h, s, l - 0.03];
 }
 
-const hslToHex = compose(
+export const hslToHex = compose(
   hslToRgb,
   rgbToHex
 );
 
-export function createPalette(useHsl?: boolean): any {
-  const c1 = generateHsl({
-    lightness: [[0, 0.2], [0.8, 0.99]][Math.floor(Math.random() * 2)]
-  });
-  const c2 = generateHsl({ lightness: isLight(c1) ? [0.2, 0.4] : [0.85, 1] });
+export function createPalette(): any {
+  const saturation = Math.random() * (0.94 - 0.39) + 0.39;
   const white = [0, 1, 1];
+  const columnBG = generateHsl(
+    [[0.1, 0.25], [0.93, 0.98]][Math.floor(Math.random() * 2)],
+    saturation
+  );
+  const activeItem = generateHsl(
+    isLight(columnBG) ? [0.3, 0.45] : [0.79, 0.95],
+    saturation
+  );
 
-  const palette = [
-    c1,
-    darken(c1),
-    c2,
-    isLight(c2) ? generateHsl({ lightness: [0, 0.3] }) : white,
-    darken(c1),
-    generateHsl({ lightness: isLight(c1) ? [0, 0.3] : [0.8, 0.99] }),
-    generateHsl({ lightness: isLight(c1) ? [0.1, 0.3] : [0.8, 0.95] }),
-    c2
+  return [
+    columnBG,
+    darken(columnBG),
+    activeItem,
+    isLight(activeItem) ? generateHsl([0, 0.2], saturation) : white,
+    darken(columnBG),
+    generateHsl(isLight(columnBG) ? [0.05, 0.18] : [0.89, 0.99], saturation),
+    generateHsl(isLight(columnBG) ? [0.25, 0.5] : [0.8, 0.9], saturation),
+    activeItem
   ];
-
-  return useHsl ? palette : palette.map(hslToHex);
 }

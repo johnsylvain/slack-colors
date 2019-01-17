@@ -1,7 +1,8 @@
 import { css } from 'emotion';
+import { formatHsl } from '../../common/helpers';
 import { theme } from '../../theme';
 
-export default (palette: string[]) => {
+export default (palette: number[][]) => {
   const [
     columnBG,
     menuBGHover,
@@ -11,9 +12,9 @@ export default (palette: string[]) => {
     textColor,
     activePresence,
     mentionBadge
-  ]: string[] = palette;
-  const textColorLight: string = `${textColor}aa`;
-  const textColorLighter: string = `${textColor}77`;
+  ]: string[] = palette.map((color: number[]) => formatHsl(color));
+  const textColorLight: string = formatHsl(palette[5], 0.8);
+  const textColorLighter: string = formatHsl(palette[5], 0.5);
 
   return {
     window: css({

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import stylesFn from './stager.styles';
+import stylesFn from './stagger.styles';
 
 type StaggerProps = { children: React.ReactNode };
 

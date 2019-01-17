@@ -9,8 +9,9 @@ import { Context } from '../../context';
 import refresh from '../../assets/refresh.svg';
 import { theme } from '../../theme';
 import styles from './generate.styles';
+import { hslToHex } from '../../common/helpers';
 
-export class Generate extends React.Component {
+export class Generate extends React.Component<{}, {}> {
   static contextType = Context;
 
   componentDidMount(): void {

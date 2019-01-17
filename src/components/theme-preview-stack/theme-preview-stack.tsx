@@ -7,7 +7,7 @@ import { Consumer } from '../../context';
 import { IContextState } from '../../interfaces';
 
 export class ThemePreviewStack extends React.Component<
-  { palettes: string[][] },
+  { palettes: number[][] },
   {}
 > {
   render(): React.ReactNode {

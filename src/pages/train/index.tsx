@@ -12,7 +12,7 @@ import thumbsUp from '../../assets/thumbs-up.svg';
 // @ts-ignore
 import thumbsDown from '../../assets/thumbs-down.svg';
 
-export class Train extends React.Component {
+export class Train extends React.Component<{}, {}> {
   static contextType = Context;
 
   vote = (rating: number): (() => void) => (): void => {

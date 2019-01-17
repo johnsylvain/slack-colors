@@ -1,5 +1,5 @@
 import { NeuralNetwork } from 'brain.js';
-import { createPalette, decimalToHex } from './helpers';
+import { createPalette, flatten } from './helpers';
 
 const net = new NeuralNetwork({
   activation: 'leaky-relu'
@@ -13,13 +13,13 @@ export function run(iterations: number, limit: number) {
   const predictions = [];
 
   for (let i = 0; i < iterations; i++) {
-    const p = createPalette(true)
-      .reduce((acc: number[], cur: number[]) => [...acc, ...cur], [])
-      .map((num: number) => Math.abs(Math.round(num / 2.55) / 100));
+    const palette = createPalette();
 
     predictions[i] = {
-      theme: decimalToHex(p),
-      score: net.run(p)[0]
+      theme: palette,
+      score: net.run(
+        flatten(palette.map((num: number[]) => [num[0] / 360, ...num.slice(1)]))
+      )[0]
     };
   }
 

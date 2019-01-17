@@ -1,5 +1,5 @@
 import { run } from './common/neural-network';
-import { createPalette, hexToRgb } from './common/helpers';
+import { createPalette, flatten } from './common/helpers';
 import { IAction, IContextState } from './interfaces';
 
 const CYCLE_THEMES = 'CYCLE_THEMES';
@@ -10,10 +10,9 @@ const REFRESH_THEMES = 'REFRESH_THEMES';
 export function reducer(action: IAction, state: IContextState): any {
   switch (action.type) {
     case CYCLE_THEMES:
-      const palette = action.payload.palette
-        .map(hexToRgb)
-        .reduce((acc: number[], cur: number[]) => [...acc, ...cur], [])
-        .map((num: number) => Math.abs(Math.round(num / 2.55) / 100));
+      const palette = flatten(action.payload.palette).map(
+        (num: number, index: number) => (index % 3 === 0 ? num / 360 : num)
+      );
 
       return {
         ...state,
@@ -30,7 +29,7 @@ export function reducer(action: IAction, state: IContextState): any {
     case GENERATE_THEMES:
       return {
         ...state,
-        generatedThemes: run(100_000, 10)
+        generatedThemes: run(500_000, 10)
       };
     case RESET_VOTES:
       return {

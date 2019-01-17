@@ -9,5 +9,12 @@ export interface ILink {
 }
 
 export interface IContextState {
-  [key: string]: any;
+  maxVotingLimit: number;
+  votingDisabled: boolean;
+  palettes: number[][];
+  trainingData: any[];
+  generatedThemes: any[];
+  actions: {
+    [key: string]: (data?: any) => void;
+  };
 }
