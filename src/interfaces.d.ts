@@ -11,7 +11,7 @@ export interface ILink {
 export interface IContextState {
   maxVotingLimit: number;
   votingDisabled: boolean;
-  palettes: number[][];
+  palettes: number[][][];
   trainingData: any[];
   generatedThemes: any[];
   actions: {

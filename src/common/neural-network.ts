@@ -1,5 +1,5 @@
 import { NeuralNetwork } from 'brain.js';
-import { createPalette, flatten } from './helpers';
+import { createPalette, formatPalette } from './helpers';
 
 const net = new NeuralNetwork({
   activation: 'leaky-relu'
@@ -17,9 +17,7 @@ export function run(iterations: number, limit: number) {
 
     predictions[i] = {
       theme: palette,
-      score: net.run(
-        flatten(palette.map((num: number[]) => [num[0] / 360, ...num.slice(1)]))
-      )[0]
+      score: net.run(formatPalette(palette))[0]
     };
   }
 

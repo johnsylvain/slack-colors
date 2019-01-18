@@ -1,5 +1,5 @@
 import { run } from './common/neural-network';
-import { createPalette, flatten } from './common/helpers';
+import { createPalette, formatPalette } from './common/helpers';
 import { IAction, IContextState } from './interfaces';
 
 const CYCLE_THEMES = 'CYCLE_THEMES';
@@ -10,9 +10,7 @@ const REFRESH_THEMES = 'REFRESH_THEMES';
 export function reducer(action: IAction, state: IContextState): any {
   switch (action.type) {
     case CYCLE_THEMES:
-      const palette = flatten(action.payload.palette).map(
-        (num: number, index: number) => (index % 3 === 0 ? num / 360 : num)
-      );
+      const palette = formatPalette(action.payload.palette);
 
       return {
         ...state,

@@ -13,7 +13,7 @@ type ProviderProps = { children: React.ReactNode };
 
 export class Provider extends React.Component<ProviderProps, IContextState> {
   state: IContextState = {
-    maxVotingLimit: 45,
+    maxVotingLimit: 30,
     votingDisabled: false,
     palettes: initialPallets,
     trainingData: loadState('trainingData') || [],

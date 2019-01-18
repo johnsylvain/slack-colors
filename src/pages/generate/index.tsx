@@ -9,16 +9,17 @@ import { Context } from '../../context';
 import refresh from '../../assets/refresh.svg';
 import { theme } from '../../theme';
 import styles from './generate.styles';
-import { hslToHex } from '../../common/helpers';
 
 export class Generate extends React.Component<{}, {}> {
   static contextType = Context;
 
   componentDidMount(): void {
     if (!this.context.generatedThemes.length) {
-      train(this.context.trainingData).then(() => {
-        this.context.actions.generateThemes();
-      });
+      train(this.context.trainingData)
+        .then(() => {
+          this.context.actions.generateThemes();
+        })
+        .catch(err => console.log(err));
     }
   }
 

@@ -1,5 +1,5 @@
 import { css } from 'emotion';
-import { formatHsl } from '../../common/helpers';
+import { formatRgba } from '../../common/helpers';
 import { theme } from '../../theme';
 
 export default (palette: number[][]) => {
@@ -12,9 +12,9 @@ export default (palette: number[][]) => {
     textColor,
     activePresence,
     mentionBadge
-  ]: string[] = palette.map((color: number[]) => formatHsl(color));
-  const textColorLight: string = formatHsl(palette[5], 0.8);
-  const textColorLighter: string = formatHsl(palette[5], 0.5);
+  ]: string[] = palette.map((color: number[]) => formatRgba(color));
+  const textColorLight: string = formatRgba(palette[5], 0.8);
+  const textColorLighter: string = formatRgba(palette[5], 0.5);
 
   return {
     window: css({
@@ -257,7 +257,7 @@ export default (palette: number[][]) => {
     }),
 
     mentionBadge: css({
-      color: activeItemText,
+      color: 'white',
       backgroundColor: mentionBadge,
       fontSize: theme.fontSizes.sm,
       display: 'flex',
