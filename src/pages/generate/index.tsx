@@ -15,9 +15,7 @@ export class Generate extends React.Component {
 
   componentDidMount(): void {
     if (!this.context.generatedThemes.length) {
-      train(this.context.trainingData).then(() => {
-        this.context.actions.generateThemes();
-      });
+      this.refresh();
     }
   }
 

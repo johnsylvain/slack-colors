@@ -11,7 +11,7 @@ export const { Consumer } = Context;
 
 export class Provider extends React.Component {
   state: IContextState = {
-    maxVotingLimit: 40,
+    maxVotingLimit: 30,
     votingDisabled: false,
     palettes: initialPallets,
     trainingData: loadState('trainingData') || [],

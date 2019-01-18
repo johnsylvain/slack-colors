@@ -1,7 +1,8 @@
 import { css } from 'emotion';
+import { formatRgba } from '../../common/helpers';
 import { theme } from '../../theme';
 
-export default (palette: string[]) => {
+export default (palette: number[][]) => {
   const [
     columnBG,
     menuBGHover,
@@ -11,9 +12,11 @@ export default (palette: string[]) => {
     textColor,
     activePresence,
     mentionBadge
-  ]: string[] = palette;
-  const textColorLight: string = `${textColor}aa`;
-  const textColorLighter: string = `${textColor}77`;
+  ]: string[] = palette.map((color: number[]) => formatRgba(color));
+  const textColorLight: string = formatRgba(palette[5], 0.8);
+  const textColorLighter: string = formatRgba(palette[5], 0.5);
+
+  console.log(palette);
 
   return {
     window: css({
@@ -256,7 +259,7 @@ export default (palette: string[]) => {
     }),
 
     mentionBadge: css({
-      color: activeItemText,
+      color: 'white',
       backgroundColor: mentionBadge,
       fontSize: theme.fontSizes.sm,
       display: 'flex',

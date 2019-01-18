@@ -1,24 +1,14 @@
-export function decimalToHex(input: number[]): string[] {
-  const rgb = input.map(n => Math.floor(n * 2.55 * 100));
-  const r = new Array(Math.ceil(rgb.length / 3))
-    .fill(null)
-    .map((_, i: number) => rgb.slice(i * 3, i * 3 + 3));
-  return r.map(rgbToHex);
-}
+import { IRgbPalette } from '../interfaces';
 
-export function hexToRgb(hex: string): number[] {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
-    ? [
-        parseInt(result[1], 16),
-        parseInt(result[2], 16),
-        parseInt(result[3], 16)
-      ]
-    : null;
-}
+export const flatten = (arr: any[]): any[] =>
+  arr.reduce((acc: any[], cur: any[]) => [...acc, ...cur], []);
 
 export function rgbToHex([r, g, b]: number[]): string {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+export function formatRgba([r, g, b]: number[], opacity: number = 1): string {
+  return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 }
 
 export function generateColor(range: number[]): number[] {
@@ -34,11 +24,11 @@ export function isLight(color: number[]): boolean {
   return luma > 150;
 }
 
-export function darken(color: number[]): number[] {
-  return color.map((c: number) => (c - 10 < 0 ? 0 : c - 10));
+export function darken(color: number[], amount: number = 10): number[] {
+  return color.map((c: number) => (c - amount < 0 ? 0 : c - amount));
 }
 
-export function createPalette(useRgb?: boolean): any {
+export function createPalette(): IRgbPalette {
   const c1 = generateColor(
     [[0, 70], [230, 255]][Math.floor(Math.random() * 2)]
   );
@@ -54,5 +44,5 @@ export function createPalette(useRgb?: boolean): any {
     generateColor(isLight(c1) ? [90, 140] : [210, 245]),
     c2
   ];
-  return useRgb ? palette : palette.map(rgbToHex);
+  return palette;
 }

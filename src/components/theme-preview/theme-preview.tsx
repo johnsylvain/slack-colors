@@ -1,12 +1,13 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import { rgbToHex } from '../../common/helpers';
 import { Overlay } from './theme-preview.overlay';
 import stylesFn from './theme-preview.styles';
 // @ts-ignore
 import avatar from '../../assets/avatar.jpg';
 
 type ThemePreviewProps = {
-  palette: string[];
+  palette: number[][];
   showPaletteColors?: boolean;
   children?: React.ReactNode;
 };
@@ -91,7 +92,7 @@ export class ThemePreview extends React.Component<ThemePreviewProps, {}> {
                   </a>{' '}
                   settings.
                 </span>
-                <div>{this.props.palette.join(', ')}</div>
+                <div>{this.props.palette.map(rgbToHex).join(', ')}</div>
               </div>
             )}
             <div className={styles.dateDivider}>

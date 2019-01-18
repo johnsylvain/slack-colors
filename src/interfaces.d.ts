@@ -11,3 +11,5 @@ export interface ILink {
 export interface IContextState {
   [key: string]: any;
 }
+
+export type IRgbPalette = number[][];
