@@ -262,6 +262,7 @@ export default (palette: number[][]) => {
       color: 'white',
       backgroundColor: mentionBadge,
       fontSize: theme.fontSizes.sm,
+      fontWeight: theme.fontWeights.black,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',

@@ -11,38 +11,61 @@ export function formatRgba([r, g, b]: number[], opacity: number = 1): string {
   return `rgba(${r}, ${g}, ${b}, ${opacity})`;
 }
 
-export function generateColor(range: number[]): number[] {
+function generateColor(range: number[]): number[] {
   const [min, max] = range;
   return new Array(3)
     .fill(null)
     .map(() => Math.round(Math.random() * (max - min) + min));
 }
 
-export function isLight(color: number[]): boolean {
+function isLight(color: number[]): boolean {
   const [r, g, b] = color;
   const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-  return luma > 150;
+  return luma > 170;
 }
 
-export function darken(color: number[], amount: number = 10): number[] {
+function darken(color: number[], amount: number = 10): number[] {
   return color.map((c: number) => (c - amount < 0 ? 0 : c - amount));
 }
 
-export function createPalette(): IRgbPalette {
-  const c1 = generateColor(
-    [[0, 70], [230, 255]][Math.floor(Math.random() * 2)]
+function triadColor(color: number[]): number[] {
+  return [color[2], ...color.slice(0, 2)];
+}
+
+function shiftHue(color: number[], weights: number[] = [0, 0, 0]): number[] {
+  return color.map((value: number, index: number) =>
+    value + weights[index] > 255 ? 255 : value + weights[index]
   );
-  const c2 = generateColor(isLight(c1) ? [70, 190] : [190, 255]);
+}
+
+export function createPalette(): IRgbPalette {
+  const columnBG = generateColor(
+    [[20, 100], [230, 255]][Math.floor(Math.random() * 2)]
+  );
+  const activeItem = generateColor(isLight(columnBG) ? [70, 160] : [190, 235]);
+  const mentionBadge = isLight(activeItem)
+    ? darken(triadColor(activeItem), 50)
+    : activeItem;
   const white = [255, 255, 255];
+
   const palette = [
-    c1,
-    darken(c1),
-    c2,
-    isLight(c2) ? generateColor([1, 100]) : white,
-    darken(c1),
-    generateColor(isLight(c1) ? [30, 80] : [220, 240]),
-    generateColor(isLight(c1) ? [90, 140] : [210, 245]),
-    c2
+    columnBG,
+    darken(columnBG),
+    activeItem,
+    isLight(activeItem) ? generateColor([0, 70]) : white,
+    darken(columnBG),
+    generateColor(isLight(columnBG) ? [30, 80] : [230, 245]),
+    [
+      generateColor(isLight(columnBG) ? [90, 140] : [210, 245]),
+      mentionBadge,
+      shiftHue(generateColor(isLight(columnBG) ? [90, 140] : [210, 245]), [
+        0,
+        30,
+        0
+      ]),
+      !isLight(columnBG) ? darken(columnBG, -60) : darken(columnBG, 50)
+    ][Math.floor(Math.random() * 4)],
+    mentionBadge
   ];
   return palette;
 }
