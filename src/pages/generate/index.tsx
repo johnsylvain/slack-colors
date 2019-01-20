@@ -10,7 +10,7 @@ import refresh from '../../assets/refresh.svg';
 import { theme } from '../../theme';
 import styles from './generate.styles';
 
-export class Generate extends React.Component {
+export class Generate extends React.Component<{}, {}> {
   static contextType = Context;
 
   componentDidMount(): void {
@@ -52,7 +52,12 @@ export class Generate extends React.Component {
             </Stagger>
           </div>
         ) : (
-          <Loader>Generating your themes.</Loader>
+          <Loader>
+            <div>📝 Compiling your selections.</div>
+            <div>🤖 Training the AI.</div>
+            <div>🎨 Generating your themes.</div>
+            <div>🔬 Picking the best matches.</div>
+          </Loader>
         )}
       </Page>
     );

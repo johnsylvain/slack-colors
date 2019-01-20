@@ -9,9 +9,9 @@ const initialPallets = new Array(4).fill(null).map(createPalette);
 export const Context = React.createContext({});
 export const { Consumer } = Context;
 
-export class Provider extends React.Component {
+export class Provider extends React.Component<{}, IContextState> {
   state: IContextState = {
-    maxVotingLimit: 35,
+    maxVotingLimit: 30,
     votingDisabled: false,
     palettes: initialPallets,
     trainingData: loadState('trainingData') || [],
