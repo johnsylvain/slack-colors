@@ -40,7 +40,7 @@ export class Provider extends React.Component<{}, IContextState> {
       this.state.trainingData.length >= this.state.maxVotingLimit;
   }
 
-  render() {
+  render(): React.ReactNode {
     return (
       <Context.Provider value={this.state}>
         {this.props.children}

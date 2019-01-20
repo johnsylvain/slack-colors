@@ -15,6 +15,7 @@ export default {
   }),
 
   body: css({
-    flexGrow: 1
+    flexGrow: 1,
+    position: 'relative'
   })
 };

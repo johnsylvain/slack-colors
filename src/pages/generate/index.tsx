@@ -52,12 +52,14 @@ export class Generate extends React.Component<{}, {}> {
             </Stagger>
           </div>
         ) : (
-          <Loader>
-            <div>📝 Compiling your selections.</div>
-            <div>🤖 Training the AI.</div>
-            <div>🎨 Generating your themes.</div>
-            <div>🔬 Picking the best matches.</div>
-          </Loader>
+          <div className={styles.center}>
+            <Loader>
+              <div>📝 Compiling your selections.</div>
+              <div>🤖 Training the AI.</div>
+              <div>🎨 Generating your themes.</div>
+              <div>🔬 Picking the best matches.</div>
+            </Loader>
+          </div>
         )}
       </Page>
     );

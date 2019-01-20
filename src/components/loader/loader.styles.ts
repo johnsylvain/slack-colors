@@ -4,7 +4,7 @@ import { theme } from '../../theme';
 const loader = keyframes`
   to {
     opacity: 0.1;
-    transform: translate3d(0, -1rem, 0) scale(0.7);
+    transform: translate3d(0, -1rem, 0) scale(0.8);
   }
 `;
 
@@ -14,8 +14,8 @@ export default {
     justifyContent: 'center',
 
     div: {
-      width: '1rem',
-      height: '1rem',
+      width: '14px',
+      height: '14px',
       margin: '2rem 0.2rem',
       background: theme.colors.primary,
       borderRadius: '50%',
@@ -33,7 +33,7 @@ export default {
 
   messages: css({
     fontWeight: theme.fontWeights.bold,
-    color: theme.colors.subtext,
+    color: theme.colors.text,
     textAlign: 'center',
     overflow: 'hidden',
     height: 40,

@@ -9,12 +9,14 @@ export class Loader extends React.Component<LoaderProps, LoaderState> {
   private intervalId: any;
 
   state = {
-    currentMessageIndex: 0
+    currentMessageIndex: -1
   };
 
   componentDidMount(): void {
     const length = React.Children.count(this.props.children);
     if (length > 1) {
+      setTimeout(() => this.setState({ currentMessageIndex: 0 }));
+
       this.intervalId = setInterval(() => {
         if (this.state.currentMessageIndex === length - 1) {
           clearInterval(this.intervalId);
@@ -23,7 +25,7 @@ export class Loader extends React.Component<LoaderProps, LoaderState> {
             currentMessageIndex: state.currentMessageIndex + 1
           }));
         }
-      }, 5000);
+      }, 6000);
     }
   }
 

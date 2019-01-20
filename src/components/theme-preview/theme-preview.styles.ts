@@ -16,8 +16,6 @@ export default (palette: number[][]) => {
   const textColorLight: string = formatRgba(palette[5], 0.8);
   const textColorLighter: string = formatRgba(palette[5], 0.5);
 
-  console.log(palette);
-
   return {
     window: css({
       backgroundColor: 'white',
@@ -220,15 +218,6 @@ export default (palette: number[][]) => {
       marginRight: -theme.gutters.md
     }),
 
-    listHeading: css({
-      marginTop: theme.gutters.md,
-      cursor: 'default',
-
-      '&:hover': {
-        backgroundColor: columnBG
-      }
-    }),
-
     listItem: css({
       padding: theme.gutters.xs,
       paddingLeft: theme.gutters.md,
@@ -238,8 +227,18 @@ export default (palette: number[][]) => {
       alignItems: 'center',
       backgroundColor: 'none',
 
-      ':hover': {
+      '&:hover': {
         backgroundColor: hoverItem
+      }
+    }),
+
+    listHeading: css({
+      marginTop: theme.gutters.md,
+      cursor: 'default',
+
+      '&:hover': {
+        backgroundColor: 'transparent !important',
+        cursor: 'default'
       }
     }),
 
