@@ -1,5 +1,5 @@
 import { css } from 'emotion';
-import { formatRgba } from '../../common/helpers';
+import { formatHsla } from '../../common/color';
 import { theme } from '../../theme';
 
 export default (palette: number[][]) => {
@@ -12,9 +12,9 @@ export default (palette: number[][]) => {
     textColor,
     activePresence,
     mentionBadge
-  ]: string[] = palette.map((color: number[]) => formatRgba(color));
-  const textColorLight: string = formatRgba(palette[5], 0.8);
-  const textColorLighter: string = formatRgba(palette[5], 0.5);
+  ]: string[] = palette.map((color: number[]) => formatHsla(color));
+  const textColorLight: string = formatHsla(palette[5], 0.8);
+  const textColorLighter: string = formatHsla(palette[5], 0.5);
 
   return {
     window: css({
@@ -193,7 +193,7 @@ export default (palette: number[][]) => {
 
     teamMenuUser: css({
       position: 'relative',
-      marginLeft: '20px',
+      marginLeft: '15px',
       fontSize: theme.fontSizes.md,
       color: textColorLight,
 
@@ -203,9 +203,9 @@ export default (palette: number[][]) => {
         backgroundColor: activePresence,
         position: 'absolute',
         top: '50%',
-        left: '-20px',
-        width: '7px',
-        height: '7px',
+        left: '-15px',
+        width: '5px',
+        height: '5px',
         transform: 'translateY(-50%)',
         border: `2px solid ${activePresence}`
       }
@@ -271,7 +271,7 @@ export default (palette: number[][]) => {
 
     listItemUser: css({
       position: 'relative',
-      paddingLeft: '35px',
+      paddingLeft: '30px !important',
       color: textColorLighter,
       display: 'flex',
       justifyContent: 'space-between',
@@ -282,8 +282,8 @@ export default (palette: number[][]) => {
         position: 'absolute',
         top: '50%',
         left: 15,
-        width: '7px',
-        height: '7px',
+        width: '5px',
+        height: '5px',
         transform: 'translateY(-50%)',
         border: `2px solid ${textColorLighter}`
       }

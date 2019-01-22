@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { createPalette } from './common/helpers';
+import { createPaletteHsl } from './common/color';
 import { reducer } from './reducer';
 import { saveState, loadState } from './common/local-storage';
 import { IAction, IContextState } from './interfaces';
 
-const initialPallets = new Array(4).fill(null).map(createPalette);
+const initialPallets = new Array(4).fill(null).map(createPaletteHsl);
 
 export const Context = React.createContext({});
 export const { Consumer } = Context;

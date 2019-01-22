@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html",
+    "build": "parcel build src/index.html --no-source-maps",
     "lint": "eslint . --ext .js --ignore-path .gitignore"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "@types/react-router-dom": "^4.3.1",
     "brain.js": "^1.6.1",
     "classnames": "^2.2.6",
+    "color": "^3.1.0",
     "emotion": "^9.2.12",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
