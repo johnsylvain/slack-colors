@@ -2,11 +2,14 @@ import { NeuralNetwork } from 'brain.js';
 import { createPaletteHsl } from './color';
 import { flatten } from './util';
 
-const net = new NeuralNetwork({
-  activation: 'leaky-relu'
-});
+let net: NeuralNetwork;
+const createNetwork = (): NeuralNetwork =>
+  new NeuralNetwork({
+    activation: 'leaky-relu'
+  });
 
 export function train(data: any): Promise<any> {
+  net = createNetwork();
   return net.trainAsync(data);
 }
 

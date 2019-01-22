@@ -25,7 +25,7 @@ export class Loader extends React.Component<LoaderProps, LoaderState> {
             currentMessageIndex: state.currentMessageIndex + 1
           }));
         }
-      }, 3000);
+      }, 2500);
     }
   }
 

@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .js --ignore-path .gitignore"
   },
   "dependencies": {
+    "@types/color": "^3.0.0",
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
     "@types/react-router-dom": "^4.3.1",

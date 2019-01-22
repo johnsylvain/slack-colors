@@ -30,26 +30,33 @@ export function createPaletteHsl(): number[][] {
   const columnBG = generateHsl(
     undefined,
     saturation,
-    pick([[25, 35], [90, 99]])
+    pick([[25, 36], [86, 98]])
   );
   const activeItem = pick([
-    generateHsl(
-      undefined,
-      saturation,
-      columnBG.isLight() ? [30, 40] : [90, 98]
-    ),
     columnBG.isLight()
-      ? columnBG.rotate(pick([90, 180])).darken(0.2)
-      : columnBG.rotate(pick([90, 180])).lighten(0.2)
+      ? columnBG.saturate(0.4).darken(0.5)
+      : columnBG.saturate(0.4).lighten(0.5),
+    columnBG.isLight()
+      ? columnBG
+          .rotate(pick([120, -120, 180]))
+          .saturate(0.4)
+          .darken(0.3)
+      : columnBG
+          .rotate(pick([120, 90, -90, 180]))
+          .saturate(0.4)
+          .lighten(0.2)
   ]);
   const mentionBadge = pick([
+    generateHsl(pick([[0, 30], [330, 360]]), 85, [47, 71]),
     activeItem.isLight()
-      ? activeItem.darken(0.2).saturate(0.5)
-      : pick([activeItem.saturate(0.5), activeItem.rotate(90).saturate(0.5)])
+      ? activeItem.darken(0.2)
+      : pick([activeItem, activeItem.rotate(pick([90, 120]))])
   ]);
   const activePresence = pick([
-    generateHsl([90, 120], saturation, [47, 64]),
-    columnBG.isLight() ? columnBG.darken(0.45) : white
+    generateHsl([90, 120], 70, [37, 54]),
+    columnBG.isLight()
+      ? columnBG.darken(0.45)
+      : pick([white, columnBG.lighten(0.5)])
   ]);
 
   return [
@@ -61,9 +68,9 @@ export function createPaletteHsl(): number[][] {
     generateHsl(
       undefined,
       saturation,
-      columnBG.isLight() ? [10, 20] : [89, 98]
+      columnBG.isLight() ? [10, 20] : [90, 98]
     ),
     activePresence,
     mentionBadge
-  ].map(({ color }: Color) => color);
+  ].map((color: Color) => color.array());
 }
