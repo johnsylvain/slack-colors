@@ -1,7 +1,8 @@
 import { css } from 'emotion';
+import { formatHsla } from '../../common/color';
 import { theme } from '../../theme';
 
-export default (palette: string[]) => {
+export default (palette: number[][]) => {
   const [
     columnBG,
     menuBGHover,
@@ -11,9 +12,9 @@ export default (palette: string[]) => {
     textColor,
     activePresence,
     mentionBadge
-  ]: string[] = palette;
-  const textColorLight: string = `${textColor}aa`;
-  const textColorLighter: string = `${textColor}77`;
+  ]: string[] = palette.map((color: number[]) => formatHsla(color));
+  const textColorLight: string = formatHsla(palette[5], 0.8);
+  const textColorLighter: string = formatHsla(palette[5], 0.5);
 
   return {
     window: css({
@@ -192,7 +193,7 @@ export default (palette: string[]) => {
 
     teamMenuUser: css({
       position: 'relative',
-      marginLeft: '20px',
+      marginLeft: '15px',
       fontSize: theme.fontSizes.md,
       color: textColorLight,
 
@@ -202,9 +203,9 @@ export default (palette: string[]) => {
         backgroundColor: activePresence,
         position: 'absolute',
         top: '50%',
-        left: '-20px',
-        width: '7px',
-        height: '7px',
+        left: '-15px',
+        width: '5px',
+        height: '5px',
         transform: 'translateY(-50%)',
         border: `2px solid ${activePresence}`
       }
@@ -217,15 +218,6 @@ export default (palette: string[]) => {
       marginRight: -theme.gutters.md
     }),
 
-    listHeading: css({
-      marginTop: theme.gutters.md,
-      cursor: 'default',
-
-      '&:hover': {
-        backgroundColor: columnBG
-      }
-    }),
-
     listItem: css({
       padding: theme.gutters.xs,
       paddingLeft: theme.gutters.md,
@@ -235,8 +227,18 @@ export default (palette: string[]) => {
       alignItems: 'center',
       backgroundColor: 'none',
 
-      ':hover': {
+      '&:hover': {
         backgroundColor: hoverItem
+      }
+    }),
+
+    listHeading: css({
+      marginTop: theme.gutters.md,
+      cursor: 'default',
+
+      '&:hover': {
+        backgroundColor: 'transparent !important',
+        cursor: 'default'
       }
     }),
 
@@ -256,9 +258,10 @@ export default (palette: string[]) => {
     }),
 
     mentionBadge: css({
-      color: activeItemText,
+      color: 'white',
       backgroundColor: mentionBadge,
       fontSize: theme.fontSizes.sm,
+      fontWeight: theme.fontWeights.black,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -268,7 +271,7 @@ export default (palette: string[]) => {
 
     listItemUser: css({
       position: 'relative',
-      paddingLeft: '35px',
+      paddingLeft: '30px !important',
       color: textColorLighter,
       display: 'flex',
       justifyContent: 'space-between',
@@ -279,8 +282,8 @@ export default (palette: string[]) => {
         position: 'absolute',
         top: '50%',
         left: 15,
-        width: '7px',
-        height: '7px',
+        width: '5px',
+        height: '5px',
         transform: 'translateY(-50%)',
         border: `2px solid ${textColorLighter}`
       }

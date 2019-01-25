@@ -5,7 +5,7 @@ import { Button } from '../../components/button';
 import { Jumbotron } from '../../components/jumbotron';
 import { IContextState } from '../../interfaces';
 
-export class Home extends React.Component {
+export class Home extends React.Component<{}, {}> {
   render(): React.ReactNode {
     return (
       <Consumer>

@@ -10,14 +10,12 @@ import refresh from '../../assets/refresh.svg';
 import { theme } from '../../theme';
 import styles from './generate.styles';
 
-export class Generate extends React.Component {
+export class Generate extends React.Component<{}, {}> {
   static contextType = Context;
 
   componentDidMount(): void {
     if (!this.context.generatedThemes.length) {
-      train(this.context.trainingData).then(() => {
-        this.context.actions.generateThemes();
-      });
+      this.refresh();
     }
   }
 
@@ -54,7 +52,14 @@ export class Generate extends React.Component {
             </Stagger>
           </div>
         ) : (
-          <Loader>Generating your themes.</Loader>
+          <div className={styles.center}>
+            <Loader>
+              <div>📝 Compiling your selections.</div>
+              <div>🤖 Training the AI.</div>
+              <div>🎨 Generating your themes.</div>
+              <div>🔬 Picking the best matches.</div>
+            </Loader>
+          </div>
         )}
       </Page>
     );

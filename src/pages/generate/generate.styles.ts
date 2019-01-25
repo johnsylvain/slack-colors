@@ -15,6 +15,7 @@ export default {
     border: 0,
     outline: 0,
     borderRadius: '50%',
+
     img: {
       position: 'relative',
       transformOrigin: 'center',
@@ -23,6 +24,7 @@ export default {
       pointerEvents: 'none',
       transition: '0.3s ease'
     },
+
     '&:before': {
       content: "''",
       backgroundColor: theme.colors.primary,
@@ -35,30 +37,45 @@ export default {
       left: 0,
       opacity: 0.2
     },
+
     '&:disabled': {
       cursor: 'not-allowed',
       opacity: 0.3
     },
+
     '&:hover': {
       img: {
         transform: 'rotate(360deg)'
       }
     }
   }),
+
+  center: css({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '100%',
+    position: 'absolute'
+  }),
+
   header: css({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: theme.gutters.md,
+
     h2: {
       fontWeight: theme.fontWeights.bold,
       fontSize: theme.fontSizes.lg
     },
+
     div: {
       display: 'flex',
       alignItems: 'center',
       color: theme.colors.subtext
     },
+
     button: {
       display: 'inline-flex',
       marginLeft: theme.gutters.md,

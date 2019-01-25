@@ -1,25 +1,31 @@
 import { NeuralNetwork } from 'brain.js';
-import { createPalette, decimalToHex } from './helpers';
+import { createPaletteHsl } from './color';
+import { flatten } from './util';
 
-const net = new NeuralNetwork({
-  activation: 'leaky-relu'
-});
+let net: NeuralNetwork;
+const createNetwork = (): NeuralNetwork =>
+  new NeuralNetwork({
+    activation: 'leaky-relu'
+  });
 
-export function train(input: any[]): Promise<any> {
-  return net.trainAsync(input);
+export function train(data: any): Promise<any> {
+  net = createNetwork();
+  return net.trainAsync(data);
 }
 
 export function run(iterations: number, limit: number) {
   const predictions = [];
 
   for (let i = 0; i < iterations; i++) {
-    const p = createPalette(true)
-      .reduce((acc: number[], cur: number[]) => [...acc, ...cur], [])
-      .map((num: number) => Math.abs(Math.round(num / 2.55) / 100));
+    const p = createPaletteHsl();
 
     predictions[i] = {
-      theme: decimalToHex(p),
-      score: net.run(p)[0]
+      theme: p,
+      score: net.run(
+        flatten(p).map((num: number, index: number) =>
+          index % 3 === 0 ? num / 360 : num / 100
+        )
+      )[0]
     };
   }
 

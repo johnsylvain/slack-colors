@@ -11,7 +11,8 @@ export default {
 
   subtitle: css({
     fontSize: theme.fontSizes.lg,
-    marginBottom: theme.gutters.md
+    marginBottom: theme.gutters.md,
+    lineHeight: 1.2
   }),
 
   container: css({

@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { createPalette } from './common/helpers';
+import { createPaletteHsl } from './common/color';
 import { reducer } from './reducer';
 import { saveState, loadState } from './common/local-storage';
 import { IAction, IContextState } from './interfaces';
 
-const initialPallets = new Array(4).fill(null).map(createPalette);
+const initialPallets = Array.from({ length: 4 }).map(createPaletteHsl);
 
 export const Context = React.createContext({});
 export const { Consumer } = Context;
 
-export class Provider extends React.Component {
+export class Provider extends React.Component<{}, IContextState> {
   state: IContextState = {
-    maxVotingLimit: 40,
+    maxVotingLimit: 45,
     votingDisabled: false,
     palettes: initialPallets,
     trainingData: loadState('trainingData') || [],
@@ -40,7 +40,7 @@ export class Provider extends React.Component {
       this.state.trainingData.length >= this.state.maxVotingLimit;
   }
 
-  render() {
+  render(): React.ReactNode {
     return (
       <Context.Provider value={this.state}>
         {this.props.children}
