@@ -20,8 +20,8 @@ export default count => {
       animation: `${lift} 0.7s forwards`
     }),
 
-    itemDelay: Array(count)
-      .fill(null)
-      .map((_, index: number) => css({ animationDelay: `${index * 0.2}s` }))
+    itemDelay: Array.from({ length: count }).map((_, index: number) =>
+      css({ animationDelay: `${index * 0.2}s` })
+    )
   };
 };

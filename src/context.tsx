@@ -4,7 +4,7 @@ import { reducer } from './reducer';
 import { saveState, loadState } from './common/local-storage';
 import { IAction, IContextState } from './interfaces';
 
-const initialPallets = new Array(4).fill(null).map(createPaletteHsl);
+const initialPallets = Array.from({ length: 4 }).map(createPaletteHsl);
 
 export const Context = React.createContext({});
 export const { Consumer } = Context;
