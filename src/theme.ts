@@ -1,5 +1,4 @@
 const spacingUnit = 10;
-export const rootFontSize = 14;
 
 const gutters = {
   xs: spacingUnit / 2,
@@ -21,9 +20,7 @@ const shadows = {
   xl: '0 8px 35px rgba(0,0,0,0.23)'
 };
 
-const rem = (px: number) => `${Math.round((px / rootFontSize) * 100) / 100}rem`;
-
-const theme = {
+export const theme = {
   colors,
   gutters,
   shadows,
@@ -46,5 +43,3 @@ const theme = {
     black: 900
   }
 };
-
-export { rem, theme };

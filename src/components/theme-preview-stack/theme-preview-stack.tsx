@@ -6,8 +6,10 @@ import { Button } from '../button';
 import { Consumer } from '../../context';
 import { IContextState } from '../../interfaces';
 
+type ThemePreviewStackProps = { palettes: string[][] };
+
 export class ThemePreviewStack extends React.Component<
-  { palettes: string[][] },
+  ThemePreviewStackProps,
   {}
 > {
   render(): React.ReactNode {
