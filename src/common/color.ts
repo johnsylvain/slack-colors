@@ -13,13 +13,13 @@ function generateHsl(
   saturation: number,
   lightness: number[] = [0, 1]
 ): Color {
-  const [hMin, hMax] = hue;
-  const [lMin, lMax] = lightness;
+  const [hueMinimum, hueMaximum] = hue;
+  const [lightnessMinimum, lightnessMaximum] = lightness;
 
   return Color.hsl(
-    Math.round(Math.random() * (hMax - hMin) + hMin),
+    Math.round(Math.random() * (hueMaximum - hueMinimum) + hueMinimum),
     saturation,
-    Math.random() * (lMax - lMin) + lMin
+    Math.random() * (lightnessMaximum - lightnessMinimum) + lightnessMinimum
   );
 }
 

@@ -6,22 +6,22 @@ type KeyHandlerProps = {
   onKeyHandle: (e: KeyboardEvent) => void;
 };
 
-export class KeyHandler extends React.Component<KeyHandlerProps, {}> {
-  componentDidMount(): void {
-    window.addEventListener(this.props.keyEventName, this.handleKey);
-  }
+export const KeyHandler: React.SFC<KeyHandlerProps> = ({
+  keyEventName,
+  keyCode,
+  onKeyHandle
+}) => {
+  React.useEffect(() => {
+    const handleKey = (event: KeyboardEvent): void => {
+      if (onKeyHandle && event.keyCode === keyCode) {
+        onKeyHandle(event);
+      }
+    };
 
-  componentWillUnmount(): void {
-    window.removeEventListener(this.props.keyEventName, this.handleKey);
-  }
+    window.addEventListener(keyEventName, handleKey);
 
-  handleKey = (event: KeyboardEvent): void => {
-    if (this.props.onKeyHandle && event.keyCode === this.props.keyCode) {
-      this.props.onKeyHandle(event);
-    }
-  };
+    return () => window.removeEventListener(keyEventName, handleKey);
+  });
 
-  render(): React.ReactNode {
-    return null;
-  }
-}
+  return null;
+};

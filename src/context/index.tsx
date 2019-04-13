@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { createPaletteHsl } from './common/color';
+import { createPaletteHsl } from '../common/color';
 import { reducer } from './reducer';
-import { saveState, loadState } from './common/local-storage';
-import { IAction, IContextState } from './interfaces';
+import { saveState, loadState } from '../common/local-storage';
+import { IAction, IContextState } from '../interfaces';
 
 const initialPallets = Array.from({ length: 4 }).map(createPaletteHsl);
 
