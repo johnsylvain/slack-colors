@@ -1,7 +1,7 @@
-import { run } from './common/neural-network';
-import { createPaletteHsl } from './common/color';
-import { flatten } from './common/util';
-import { IAction, IContextState } from './interfaces';
+import { run } from '../common/neural-network';
+import { createPaletteHsl } from '../common/color';
+import { flatten } from '../common/util';
+import { IAction, IContextState } from '../interfaces';
 
 const CYCLE_THEMES = 'CYCLE_THEMES';
 const GENERATE_THEMES = 'GENERATE_THEMES';

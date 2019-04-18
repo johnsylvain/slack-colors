@@ -6,33 +6,33 @@ export const formatHsla = (hsl: number[], opacity: number = 1): string =>
     .fade(1 - opacity)
     .string();
 
-export const hslToHex = (hsl: number[]) => Color.hsl(hsl).hex();
+export const hslToHex = (hsl: number[]): string => Color.hsl(hsl).hex();
 
 function generateHsl(
   hue: number[] = [0, 360],
   saturation: number,
   lightness: number[] = [0, 1]
 ): Color {
-  const [hMin, hMax] = hue;
-  const [lMin, lMax] = lightness;
+  const [hueMinimum, hueMaximum] = hue;
+  const [lightnessMinimum, lightnessMaximum] = lightness;
 
   return Color.hsl(
-    Math.round(Math.random() * (hMax - hMin) + hMin),
+    Math.round(Math.random() * (hueMaximum - hueMinimum) + hueMinimum),
     saturation,
-    Math.random() * (lMax - lMin) + lMin
+    Math.random() * (lightnessMaximum - lightnessMinimum) + lightnessMinimum
   );
 }
 
 export function createPaletteHsl(): number[][] {
-  const white = Color.hsl([0, 100, 100]);
+  const white: Color = Color.hsl([0, 100, 100]);
   const saturation = Math.random() * (30 - 15) + 15;
 
-  const columnBG = generateHsl(
+  const columnBG: Color = generateHsl(
     undefined,
     saturation,
     pick([[25, 36], [86, 98]])
   );
-  const activeItem = pick([
+  const activeItem: Color = pick([
     columnBG.isLight()
       ? columnBG.saturate(0.4).darken(0.5)
       : columnBG.saturate(0.4).lighten(0.5),
@@ -46,13 +46,13 @@ export function createPaletteHsl(): number[][] {
           .saturate(0.4)
           .lighten(0.2)
   ]);
-  const mentionBadge = pick([
+  const mentionBadge: Color = pick([
     generateHsl(pick([[0, 30], [330, 360]]), 85, [47, 71]),
     activeItem.isLight()
       ? activeItem.darken(0.2)
       : pick([activeItem, activeItem.rotate(pick([90, 120]))])
   ]);
-  const activePresence = pick([
+  const activePresence: Color = pick([
     generateHsl([90, 120], 70, [37, 54]),
     columnBG.isLight()
       ? columnBG.darken(0.45)

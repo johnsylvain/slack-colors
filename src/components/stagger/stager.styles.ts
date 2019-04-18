@@ -12,7 +12,7 @@ const lift = keyframes`
   }
 `;
 
-export default count => {
+export default (count: number) => {
   return {
     item: css({
       opacity: 0,
